@@ -86,8 +86,9 @@ bun scripts/skill-manager.ts sync
 ```
 
 脚本可从任意工作目录执行。
-CLI 缺失时优先使用 Cargo 安装。
-否则按系统和架构通过 `gh-proxy.org` 下载发行版。
+运行同步前，安装 [Skills Manager](https://github.com/xingkongliang/skills-manager)。
+CLI 必须位于 PATH 中，或使用桌面应用发布的 CLI。
+如果找不到 CLI，脚本会返回错误并显示安装地址。
 已有中央库条目会保留；重复执行仍会部署。部署冲突由 Skills Manager 拒绝覆盖，需根据报告处理。
 
 ## 输出语言

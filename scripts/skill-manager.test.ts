@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { add, remove, loadManifest, readManifest, flattenSkills } from "./skill-manager";
@@ -9,6 +9,19 @@ const fixture = () => ({ version: 2, deploy_to: ["claude_code", "codex", "grok",
 
 type MockSkill = { name: string; source_type: string; presets: string[]; deployed_to: string[] };
 const readState = (path: string): MockSkill[] => JSON.parse(readFileSync(path, "utf8"));
+
+test("A missing CLI reports installation instructions without creating files", () => {
+  const home = mkdtempSync(join(tmpdir(), "flora-no-cli-"));
+  try {
+    const result = Bun.spawnSync([process.execPath, resolve(import.meta.dir, "skill-manager.ts"), "sync"], {
+      env: { ...process.env, HOME: home, PATH: home },
+    });
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr.toString()).toContain("skills-manager-cli was not found");
+    expect(result.stderr.toString()).toContain("https://github.com/xingkongliang/skills-manager");
+    expect(existsSync(join(home, ".skills-manager"))).toBe(false);
+  } finally { rmSync(home, { recursive: true, force: true }); }
+});
 
 test("Git sources and preset references remain consistent", () => {
   const data = fixture();

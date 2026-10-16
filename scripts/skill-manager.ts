@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 
 export const manifestPath = resolve(import.meta.dir, "../skill-manager.yaml");
@@ -93,34 +93,6 @@ function run(command: string[], capture = false): string {
   return capture ? (result.stdout?.toString() ?? "") : "";
 }
 
-function available(command: string): boolean {
-  return !!Bun.which(command) && Bun.spawnSync([command, "--version"]).exitCode === 0;
-}
-
-function bootstrapCli(binary: string): void {
-  if (available("cargo") && available("rustc")) {
-    run(["cargo", "install", "--git", "https://github.com/xingkongliang/skills-manager",
-      "--bin", "skills-manager-cli", "--locked", "--root", join(homedir(), ".skills-manager")]);
-    return;
-  }
-  const platform = { darwin: "macOS", linux: "Linux" }[process.platform as string];
-  const arch = { arm64: "arm64", x64: "x64" }[process.arch as string];
-  if (!platform || !arch) throw new Error("Unsupported operating system or architecture.");
-  mkdirSync(dirname(binary), { recursive: true });
-  const temp = mkdtempSync(join(dirname(binary), ".download-"));
-  const download = join(temp, "skills-manager-cli");
-  try {
-    const base = "https://gh-proxy.org/https://github.com/xingkongliang/skills-manager/releases/latest/download";
-    run(["curl", "--fail", "--location", "--retry", "3",
-      `${base}/skills-manager-cli-${platform}-${arch}`, "--output", download]);
-    chmodSync(download, 0o755);
-    run([download, "--version"]);
-    renameSync(download, binary);
-  } finally {
-    rmSync(temp, { recursive: true, force: true });
-  }
-}
-
 function resolveCli(): string {
   const bin = join(homedir(), ".skills-manager/bin");
   const stamp = join(bin, ".version");
@@ -133,8 +105,7 @@ function resolveCli(): string {
   }
   const installed = Bun.which("skills-manager-cli");
   if (installed) return installed;
-  bootstrapCli(binary);
-  return binary;
+  throw new Error("skills-manager-cli was not found. Install Skills Manager from https://github.com/xingkongliang/skills-manager and add the CLI to PATH.");
 }
 
 type InstalledSkill = { name: string; source_type: string; presets: string[]; deployed_to: string[] };

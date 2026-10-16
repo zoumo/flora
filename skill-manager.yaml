@@ -1,0 +1,116 @@
+# flora 元数据清单；由 scripts/skill-manager.ts 读取。
+version: 2
+deploy_to:
+  - claude_code
+  - codex
+  - grok
+  - pi
+presets:
+  技能与工具:
+    - agent-browser
+    - multica-cli
+    - skill-creator
+  设计与表达:
+    - archify
+    - asd-ste100
+    - excalidraw-diagram
+    - frontend-slides
+    - hallmark
+    - pretty-mermaid
+    - unslop
+  内部办公:
+    - dingtalk-aicard
+    - dingtalk-aisearch
+    - dingtalk-chat
+    - dingtalk-minutes
+  开发工作流:
+    - code-review
+    - codebase-design
+    - diagnosing-bugs
+    - domain-modeling
+    - grill-with-docs
+    - grilling
+    - handoff
+    - implement
+    - improve-codebase-architecture
+    - prototype
+    - research
+    - setup-matt-pocock-skills
+    - tdd
+    - teach
+    - to-spec
+    - to-tickets
+    - triage
+    - wayfinder
+sources:
+  - ref: anthropics/skills
+    skills:
+      - name: skill-creator
+  - ref: coleam00/excalidraw-diagram-skill
+    skills:
+      - name: excalidraw-diagram
+  - ref: cursor/plugins
+    skills:
+      - name: unslop
+  - ref: danyuchn/asd-ste100-skill
+    skills:
+      - name: asd-ste100
+  - ref: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
+    branch: main
+    skills:
+      - name: dingtalk-aicard
+        path: skills/multi/dingtalk-aicard
+      - name: dingtalk-aisearch
+        path: skills/multi/dingtalk-aisearch
+      - name: dingtalk-chat
+        path: skills/multi/dingtalk-chat
+      - name: dingtalk-minutes
+        path: skills/multi/dingtalk-minutes
+      - name: dws
+  - ref: https://github.com/mzopedia/simplified-technical-chinese
+    skills:
+      - name: simplified-technical-chinese
+  - ref: https://github.com/xingkongliang/skills-manager
+    branch: main
+    skills:
+      - name: manage-skills
+        path: skills/manage-skills
+  - ref: imxv/pretty-mermaid-skills
+    skills:
+      - name: pretty-mermaid
+  - ref: mattpocock/skills
+    skills:
+      - name: code-review
+      - name: codebase-design
+      - name: diagnosing-bugs
+      - name: domain-modeling
+      - name: grill-with-docs
+      - name: grilling
+      - name: handoff
+      - name: implement
+      - name: improve-codebase-architecture
+      - name: prototype
+      - name: research
+      - name: retro
+      - name: setup-matt-pocock-skills
+      - name: tdd
+      - name: teach
+      - name: to-spec
+      - name: to-tickets
+      - name: triage
+      - name: wayfinder
+  - ref: multica-ai/multica-cli
+    skills:
+      - name: multica-cli
+  - ref: nutlope/hallmark
+    skills:
+      - name: hallmark
+  - ref: tt-a1i/archify
+    skills:
+      - name: archify
+  - ref: vercel-labs/agent-browser
+    skills:
+      - name: agent-browser
+  - ref: zarazhangrui/frontend-slides
+    skills:
+      - name: frontend-slides

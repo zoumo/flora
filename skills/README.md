@@ -11,5 +11,6 @@
 ## 自有 Skill
 
 - [deepmodule-design](deepmodule-design/SKILL.md)：设计语言无关的深模块，用 TypeSpec 定义接口和数据结构。
+- [harness-agent](harness-agent/SKILL.md)：初始化 harness、合并根入口，并配置后续 Agent 的文档与写入规则。
 
 仓库内部的写作规范存放在 `.agent/skills/`。

@@ -8,4 +8,8 @@
 `SKILL.md` 说明用途、触发条件和操作步骤。
 共享准则可引用 `principle/` 中的文档。
 
+## 自有 Skill
+
+- [deepmodule-design](deepmodule-design/SKILL.md)：设计语言无关的深模块，用 TypeSpec 定义接口和数据结构。
+
 仓库内部的写作规范存放在 `.agent/skills/`。

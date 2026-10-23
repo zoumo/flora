@@ -63,6 +63,30 @@ class CheckTests(unittest.TestCase):
         self.assertEqual(self.check()[0], 1)
         self.assertEqual(outside.read_bytes(), original)
 
+    def test_external_equivalent_cannot_replace_template(self):
+        docs = self.repo / "docs"
+        docs.mkdir()
+        (self.repo / "harness/architecture.md").rename(docs / "architecture.md")
+        index = self.repo / "harness/index.md"
+        index.write_text(index.read_text().replace(
+            "(architecture.md)", "(../docs/architecture.md)"), encoding="utf-8")
+        code, data = self.check()
+        self.assertEqual(code, 1)
+        self.assertIn("harness/architecture.md: 缺少必需文件", data["errors"])
+
+    def test_external_document_content_is_out_of_scope(self):
+        docs = self.repo / "docs"
+        docs.mkdir()
+        outside = docs / "architecture.md"
+        outside.write_text("[失效链接](missing.md)\n", encoding="utf-8")
+        original = outside.read_bytes()
+        index = self.repo / "harness/index.md"
+        index.write_text(index.read_text() + "\n[外部参考](../docs/architecture.md)\n",
+                         encoding="utf-8")
+        code, data = self.check()
+        self.assertEqual(code, 0, data)
+        self.assertEqual(outside.read_bytes(), original)
+
 
 if __name__ == "__main__":
     unittest.main()

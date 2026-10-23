@@ -1,7 +1,7 @@
 ---
 type: Development Standard
 title: Go 项目技术选型
-description: 规定 Go 项目的 CLI、配置读取、测试、HTTP 框架与客户端、结构化日志、lint 和可观测性选型。
+description: 规定 Go 项目的 CLI、配置读取、测试、HTTP 框架与客户端、结构化日志、日志滚动、lint 和可观测性选型。
 status: stable
 ---
 
@@ -57,6 +57,16 @@ Viper 读取配置，默认格式为 YAML。
 - 程序入口统一配置日志；可复用模块不自行更改全局输出目标或级别。
 - 使用 JSONHandler 提供机器可读日志，TextHandler 用于本地阅读。日志与 CLI 业务输出分别处理，避免污染 stdout 上的命令结果。
 - 日志禁止记录认证秘密。请求、响应与业务内容遵循明确的记录和脱敏策略。
+
+## 日志滚动
+
+选型：[Lumberjack](https://github.com/natefinch/lumberjack)。
+
+日志写入本地文件时，使用 Lumberjack 按文件大小滚动日志。
+将 `lumberjack.Logger` 作为 slog Handler 的输出目标。
+程序入口配置文件路径、大小上限、保留数量、保留天数和压缩选项。
+同一组日志文件只允许一个进程写入。
+程序退出时关闭 `lumberjack.Logger`。
 
 ## lint 与格式检查
 

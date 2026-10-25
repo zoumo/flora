@@ -42,6 +42,7 @@ presets:
     - to-tickets
     - triage
     - wayfinder
+    - writing-for-agents
 sources:
   - ref: anthropics/skills
     skills:
@@ -99,6 +100,7 @@ sources:
       - name: to-tickets
       - name: triage
       - name: wayfinder
+      - name: writing-for-agents
   - ref: multica-ai/multica-cli
     skills:
       - name: multica-cli

@@ -12,6 +12,7 @@
 
 - [deepmodule-design](deepmodule-design/SKILL.md)：设计语言无关的深模块，用 TypeSpec 定义接口和数据结构。
 - [harness-agent](harness-agent/SKILL.md)：初始化 harness、合并根入口，并配置后续 Agent 的文档与写入规则。
+- [less-is-more](less-is-more/SKILL.md)：简化代码、接口和架构，减少不必要的概念与机制。
 - [spec-to-ship](spec-to-ship/SKILL.md)：从需求澄清推进到规范、ticket 拆分和逐 ticket 独立实现。
 
 仓库内部的写作规范存放在 `.agent/skills/`。

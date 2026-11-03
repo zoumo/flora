@@ -17,11 +17,7 @@ except ImportError:
     sys.exit(2)
 
 
-TEMPLATES = Path(__file__).resolve().parents[1] / "templates"
-REQUIRED = tuple(
-    path.relative_to(TEMPLATES).as_posix()
-    for path in sorted(TEMPLATES.rglob("*")) if path.is_file()
-)
+REQUIRED = ("AGENTS.md", "harness/AGENTS.md", "harness/index.md")
 SKIP_DIRS = {".git", "node_modules", ".venv", "__pycache__"}
 
 
@@ -49,14 +45,11 @@ def main():
     bundle = repo / "harness"
     errors = []
     warnings = []
-    if not REQUIRED:
-        print(json.dumps({"passed": False, "errors": ["模板目录为空或缺失"]}, ensure_ascii=False))
-        return 1
     if not repo.is_dir() or repo.is_symlink() or not bundle.is_dir() or bundle.is_symlink():
         print(json.dumps({"passed": False, "errors": ["仓库与 harness 须为已有普通目录"]}, ensure_ascii=False))
         return 1
 
-    for relative in ("AGENTS.md", *("harness/" + p for p in REQUIRED)):
+    for relative in REQUIRED:
         target = repo / relative
         if target.is_symlink() or any(p.is_symlink() for p in target.parents if p != repo and repo in p.parents):
             errors.append(f"{relative}: 保留符号链接，未读取")
@@ -128,7 +121,7 @@ def main():
         "repo": str(repo), "passed": not errors, "checked_files": len(files),
         "errors": errors, "warnings": warnings,
         "excluded_directories": sorted(SKIP_DIRS),
-        "limits": ["不检查授权与规则语义", "不检查引用式链接、标题锚点或外部 URL", "不验证全部可选 OKF 元数据"],
+        "limits": ["不检查授权、规则语义或内容完整性", "不检查引用式链接、标题锚点或外部 URL", "不验证全部可选 OKF 元数据"],
     }, ensure_ascii=False, indent=2))
     return 1 if errors else 0
 

@@ -72,7 +72,7 @@ Viper 读取配置，默认格式为 YAML。
 
 选型：[golangci-lint](https://golangci-lint.run/)。
 
-配置基线见 [golangci-lint 模板](templates/golangci-lint.yaml)，采用 v2 格式。
+配置基线见 [golangci-lint 模板](golangci-lint.yaml)，采用 v2 格式。
 新项目可复制为 Go 模块根目录的 `.golangci.yaml` 并按需调整。
 已有项目配置不自动替换。
 

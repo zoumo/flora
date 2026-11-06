@@ -18,6 +18,7 @@ description: 按顺序执行需求澄清、本地规范、ticket 拆分和逐 ti
    将用户选择的 Git flow 传给每个实现上下文。
    每个实现上下文必须调用 `implement` skill 实现对应的 ticket。
    一张 ticket 只在一个上下文中实现。
+   当 ticket 完成时，尝试使用 `mcp__codex_app__set_thread_archived` 归档 ticket 的 thread。
 6. 报告规范路径、tracker 位置或标识、ticket 列表，以及每张 ticket 使用的上下文。
 
 ## 规则

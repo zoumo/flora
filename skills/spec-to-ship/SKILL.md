@@ -26,15 +26,11 @@ argument-hint: "[--fast | --strict]"
 
 ## Ticket 协作
 
-- 独立 thread（优先）：`mcp__codex_app__create_thread` 和 `mcp__codex_app__send_message_to_thread` 可用，且集成 thread 的 `threadId` 已知时使用。
-  - 启动提示必须包含集成 thread 的 `threadId` 和回调要求。
-  - ticket thread 完成实现和提交后，将目标分支合并到 ticket 分支，解决冲突，重新运行检查。
-  - ticket thread 进入可合并、失败或阻塞状态时，必须调用 `mcp__codex_app__send_message_to_thread` 回调集成 thread。
-  - 回调包含 ticket、状态、分支、worktree、提交 SHA、检查结果、待合并状态和遗留风险。
-  - ticket thread 回调后结束当前 turn，不自行合并到集成分支。
-  - 集成 thread 不调用 `mcp__codex_app__wait_threads`、`wait_agent`，不反复调用 `mcp__codex_app__read_thread`，不轮询或 sleep 等待。集成 thread 可以启动其他可执行 ticket，或结束当前 turn，等待回调唤醒。
-- subagent（备用）：独立 thread 不可用时使用。ticket 完成实现、提交、目标分支合并和检查后返回最终结果。集成 thread 直接接收本次 subagent 的最终结果；subagent 不发送回调。
-- 调用本 skill 即授权 ticket thread 只向集成 thread 发送最终状态回调。
+- 独立 thread（默认）：用 `mcp__codex_app__create_thread` 创建 ticket thread。工具未加载时先加载。只有工具加载或调用失败时，才使用 subagent。
+- ticket thread 完成实现和提交后，将目标分支合并到 ticket 分支，重新运行检查。
+- 集成 thread 用 `mcp__codex_app__wait_threads` 等待 ticket thread 完成，并读取最终结果。ticket thread 不合并到集成分支。
+- subagent（备用）：ticket 完成实现、提交、目标分支合并和检查后，直接返回最终结果。
+- 调用本 skill 即授权创建 ticket thread。
 
 ## 流程
 
@@ -46,21 +42,17 @@ argument-hint: "[--fast | --strict]"
    - 本地 tracker 的规范目录是 `<integration-worktree>/.scratch/<feature-slug>/`。记录绝对路径 `SPEC_DIR`。
    - 规范目录被 Git 忽略时不提交；未被忽略时提交到集成分支。
    - 外部 tracker 记录 issue 标识或 URL。
-5. 在启动 ticket 实现前，向用户输出执行前报告，包含：
-   - Git Flow：目标分支、集成分支、集成 worktree，以及 ticket 分支和 worktree 的命名方式。
-   - 运行模式：快速模式或严格模式，并写明选择依据。
-   - Ticket 计划：按依赖顺序列出 ticket，并写明每张 ticket 的依赖关系。
-   - 检查计划：每张 ticket 的检查范围。快速模式还要写明最终全量检查。
-   - 协作方式：每张 ticket 使用独立 thread 或 subagent；独立 thread 完成后回调集成 thread。
-   - 预估时间：每张 ticket 和总时长。写出估算依据；无法可靠估算时写“待确认”。
-   - 风险：依赖、冲突、外部系统和需要用户决定的事项。
+5. 在启动 ticket 实现前，向用户输出简短执行前报告，只包含：
+   - 最终集成分支。
+   - 执行模式：快速模式或严格模式。
+   - 预估时间：从开始 ticket 到最终完成的总时长。无法可靠估算时写“待确认”。
 6. 按依赖顺序执行 ticket。每张 ticket 使用独立 worktree，并按 Ticket 协作章节选择独立 thread 或 subagent。从目标分支创建分支 `<feature-slug>/<NN>-<slug>` 和 worktree `<repo>-worktrees/<feature-slug>/<NN>-<slug>`。
    - 启动 ticket 上下文。
    - 传入 ticket worktree、ticket 分支、目标分支、ticket 引用和 `SPEC_DIR`。外部 tracker 传 issue 标识或 URL。
    - 上下文以 ticket worktree 为工作目录，确认当前分支等于 ticket 分支。
    - 分支不一致时停止。分支一致时调用 `implement`，提交到 ticket 分支，运行检查。
 7. 合并 ticket。
-   - 收到独立 thread 完成回调或 subagent 最终结果后，确认 ticket 已提交，目标分支已合并到 ticket 分支，检查通过。
+   - 独立 thread 完成或 subagent 返回结果后，确认 ticket 已提交，目标分支已合并到 ticket 分支，检查通过。
    - 确认集成 worktree 当前分支是目标分支。不一致时停止，一致时运行 `git merge --no-ff <ticket-branch>`。
    - 目标分支检查通过后，标记 ticket 完成。独立 thread 尝试使用 `mcp__codex_app__set_thread_archived` 归档 thread。删除 ticket worktree 和 ticket 分支。
    - 检查失败时保留 ticket worktree 和分支，停止。冲突交回同一上下文，不在主上下文解决。

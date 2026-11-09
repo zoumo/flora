@@ -1,0 +1,150 @@
+{
+  "add_runs": [
+    {
+      "key": "11/09 agent-sdk remove-testify-cli",
+      "root_sessions": [
+        "01a1bf3d-aa1a-7f21-9648-66aa8de28fe6",
+        "01a1bf4d-e9a7-7052-8ad2-ff913a268757"
+      ],
+      "start": "2026-11-09T07:36:30.237Z",
+      "end": "2026-11-09T14:28:02.889Z",
+      "project": "agent-sdk-go",
+      "notes": "8 张全部完成；由前置规划线程移交独立编排线程",
+      "flags": [
+        "nested",
+        "handoff_merged",
+        "remote_compact"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1bf6b-a592-7b92-871e-058f3f609900",
+          "sessions": [
+            "01a1bf50-c365-73f1-933e-28e94200a4ba",
+            "01a1bf6b-a592-7b92-871e-058f3f609900",
+            "01a1bfa3-152e-7c01-81ac-6236c20d2248"
+          ],
+          "note": "首轮 remote-compact 失败；接管修复并做最终核验"
+        },
+        {
+          "label": "02",
+          "primary": "01a1bf74-a9ed-7a50-902b-b2813f371a41",
+          "sessions": [
+            "01a1bf74-a9ed-7a50-902b-b2813f371a41"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1bf74-ee15-73f2-8ffb-68d8db8a8e71",
+          "sessions": [
+            "01a1bf74-ee15-73f2-8ffb-68d8db8a8e71"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1bf86-1ff3-7081-ab1f-3a2d7b002e35",
+          "sessions": [
+            "01a1bf86-1ff3-7081-ab1f-3a2d7b002e35"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1bf98-8d27-7271-8267-160b4d61c2b6",
+          "sessions": [
+            "01a1bf98-8d27-7271-8267-160b4d61c2b6"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1bfc7-ef17-79f3-8db5-e4a10b685b80",
+          "sessions": [
+            "01a1bfc7-ef17-79f3-8db5-e4a10b685b80"
+          ]
+        },
+        {
+          "label": "07",
+          "primary": "01a1c024-063a-7191-92f1-dc9809f8d0cc",
+          "sessions": [
+            "01a1c024-063a-7191-92f1-dc9809f8d0cc"
+          ]
+        },
+        {
+          "label": "08",
+          "primary": "01a1c06b-616a-7162-ba80-da0f9de78e3a",
+          "sessions": [
+            "01a1c06b-616a-7162-ba80-da0f9de78e3a"
+          ]
+        }
+      ]
+    }
+  ],
+  "runs": {
+    "11/04 testify tests refactor": {
+      "flags": [
+        "nested"
+      ],
+      "tickets": {
+        "24": {
+          "primary": "01a1a761-3be0-7481-aef8-aeb31c26e827",
+          "sessions": [
+            "01a1a761-3be0-7481-aef8-aeb31c26e827"
+          ]
+        },
+        "25": {
+          "primary": "01a1a76c-d501-7773-ab54-4711ea13e4b3",
+          "sessions": [
+            "01a1a76c-d501-7773-ab54-4711ea13e4b3"
+          ]
+        },
+        "26": {
+          "primary": "01a1a77c-5a92-7f92-97a9-a0b12b592e85",
+          "sessions": [
+            "01a1a77c-5a92-7f92-97a9-a0b12b592e85"
+          ]
+        }
+      }
+    },
+    "11/05 Mindpowers FE": {
+      "flags": [
+        "nested"
+      ]
+    },
+    "11/06 MASS idle close": {
+      "flags": [
+        "handoff_merged"
+      ],
+      "tickets": {
+        "06": {
+          "sessions": [
+            "01a1b284-45ee-7e93-b10e-02ec443e7ab2",
+            "01a1b5a2-e953-7751-b55d-53363778b11e"
+          ],
+          "note": "首轮线程未正式收尾；同一编排根的 finish-gaps 线程完成 T06"
+        }
+      }
+    },
+    "11/08 testify in-process": {
+      "tickets": {
+        "03": {
+          "status": "completed_in_inferred_tail"
+        }
+      }
+    },
+    "11/09 agent-sdk execution options": {
+      "flags": [
+        "partial"
+      ],
+      "tickets": {
+        "05": {
+          "status": "running"
+        }
+      }
+    }
+  },
+  "analysis": {
+    "attempt_include_resume": [
+      "01a1ac8a-a745-7280-88a7-2040f236f9ee",
+      "01a1ac7e-75f4-7933-a47b-b25dcc139287"
+    ]
+  }
+}

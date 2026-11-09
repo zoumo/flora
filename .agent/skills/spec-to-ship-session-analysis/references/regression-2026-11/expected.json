@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "scope": {
+    "since": "2026-11-03",
+    "until": "2026-11-09",
+    "timezone": "Asia/Shanghai",
+    "as_of": "2026-11-09T14:29:00Z",
+    "source_roots": [
+      "/Users/jim/.codex/sessions",
+      "/Users/jim/.codex/archived_sessions"
+    ],
+    "file_count": 544,
+    "session_count": 540,
+    "errors": []
+  },
+  "summary": {
+    "runs": 23,
+    "tickets_allocated": 114,
+    "finished": 113,
+    "completed": 112,
+    "completed_in_inferred_tail": 1,
+    "running": 1,
+    "unclosed": 0,
+    "run_wall_sum_hours": 177.920116,
+    "ticket_effort_hours": 81.894575,
+    "ticket_effort_finished_hours": 80.971441,
+    "ticket_latency_hours": 112.509853,
+    "ticket_latency_finished_hours": 111.586719,
+    "root_engaged_hours": 96.604717,
+    "root_wait_hours": 66.213036,
+    "root_own_hours": 30.391681,
+    "run_window_union_hours": 102.423669,
+    "root_engaged_union_hours": 59.182407,
+    "ticket_engaged_union_hours": 50.467384,
+    "active_union_hours": 60.146861,
+    "effort_exceeds_wall": false
+  },
+  "distribution": {
+    "ticket_effort_minutes": {
+      "n": 113,
+      "median": 32.97895,
+      "p75": 55.640633,
+      "p90": 87.774817,
+      "mean": 42.993686,
+      "min": 3.224567,
+      "max": 232.2014
+    },
+    "ticket_latency_minutes": {
+      "n": 113,
+      "median": 36.182933,
+      "p75": 64.725117,
+      "p90": 96.13575,
+      "mean": 59.249585,
+      "min": 9.03485,
+      "max": 927.340383
+    },
+    "ticket_effort_buckets": {
+      "60-120m": 23,
+      "15-30m": 31,
+      "30-60m": 35,
+      ">=120m": 3,
+      "<15m": 21
+    },
+    "ticket_count": {
+      "n": 23,
+      "median": 5.0,
+      "p75": 6.0,
+      "p90": 7.8,
+      "mean": 4.956522,
+      "min": 1.0,
+      "max": 12.0
+    },
+    "full_run_wall_hours": {
+      "n": 22,
+      "median": 3.72062,
+      "p75": 7.683683,
+      "p90": 14.785594,
+      "mean": 7.858201,
+      "min": 1.036563,
+      "max": 43.871676
+    },
+    "full_run_count": 22,
+    "partial_run_count": 1
+  },
+  "phases": {
+    "calendar_sum_hours": {
+      "prep": 15.84678,
+      "implementation": 110.528724,
+      "closeout": 46.504911
+    },
+    "root_active_sum_hours": {
+      "prep": 7.385298,
+      "implementation": 75.352075,
+      "closeout": 9.171319
+    },
+    "calendar_share_median_percent": {
+      "prep": 9.518682,
+      "implementation": 63.546555,
+      "closeout": 17.725624
+    }
+  },
+  "attribution": {
+    "ticket_minutes": {
+      "model_edit_untimed": 2021.489189,
+      "tests_verification": 1592.562996,
+      "subagent_wait": 544.2366,
+      "other_tools": 350.001698,
+      "other_commands": 214.44605,
+      "inspect_search": 92.752969,
+      "build_lint": 31.336557,
+      "browser_e2e": 26.248505,
+      "git_pr_ci": 20.505951,
+      "network_install": 13.093988,
+      "orchestration": 5.584983,
+      "extension": 1.415017,
+      "thread_wait": 0.0,
+      "ci_wait": 0.0,
+      "mcp_app": 0.0,
+      "web_search": 0.0
+    },
+    "root_minutes": {
+      "thread_wait": 3972.782131,
+      "model_edit_untimed": 1039.676559,
+      "tests_verification": 242.92592,
+      "subagent_wait": 205.126133,
+      "other_tools": 139.298466,
+      "ci_wait": 105.58925,
+      "git_pr_ci": 35.644781,
+      "other_commands": 17.528195,
+      "extension": 12.674317,
+      "network_install": 8.885482,
+      "inspect_search": 8.554227,
+      "build_lint": 6.208096,
+      "orchestration": 1.38946,
+      "browser_e2e": 0.0,
+      "mcp_app": 0.0,
+      "web_search": 0.0
+    },
+    "ticket_total_minutes": 4913.674503,
+    "root_total_minutes": 5796.283017
+  },
+  "runs": {
+    "11/03 testify session-root": {
+      "ticket_count": 8,
+      "status_counts": {
+        "completed": 8
+      },
+      "flags": [],
+      "ticket_effort_hours": 6.534397,
+      "ticket_latency_hours": 6.696544,
+      "root_engaged_minutes": 439.6302,
+      "root_wait_minutes": 366.075294,
+      "root_own_minutes": 73.554906
+    },
+    "11/04 testify session-data-root": {
+      "ticket_count": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.550047,
+      "ticket_latency_hours": 1.550047,
+      "root_engaged_minutes": 116.998017,
+      "root_wait_minutes": 74.699344,
+      "root_own_minutes": 42.298672
+    },
+    "11/04 testify protocol simplify": {
+      "ticket_count": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "flags": [],
+      "ticket_effort_hours": 3.111245,
+      "ticket_latency_hours": 3.250522,
+      "root_engaged_minutes": 236.128417,
+      "root_wait_minutes": 84.608297,
+      "root_own_minutes": 151.52012
+    },
+    "11/04 testify package regroup": {
+      "ticket_count": 5,
+      "status_counts": {
+        "completed": 5
+      },
+      "flags": [],
+      "ticket_effort_hours": 0.65616,
+      "ticket_latency_hours": 7.944913,
+      "root_engaged_minutes": 65.12605,
+      "root_wait_minutes": 28.421127,
+      "root_own_minutes": 36.704923
+    },
+    "11/04 testify tests refactor": {
+      "ticket_count": 3,
+      "status_counts": {
+        "completed": 3
+      },
+      "flags": [
+        "nested"
+      ],
+      "ticket_effort_hours": 0.911099,
+      "ticket_latency_hours": 0.911099,
+      "root_engaged_minutes": 67.020233,
+      "root_wait_minutes": 0,
+      "root_own_minutes": 67.020233
+    },
+    "11/04 agent-sdk testify adapt": {
+      "ticket_count": 4,
+      "status_counts": {
+        "completed": 4
+      },
+      "flags": [],
+      "ticket_effort_hours": 2.10554,
+      "ticket_latency_hours": 2.105911,
+      "root_engaged_minutes": 173.923217,
+      "root_wait_minutes": 118.738067,
+      "root_own_minutes": 55.18515
+    },
+    "11/05 MASS recording": {
+      "ticket_count": 5,
+      "status_counts": {
+        "completed": 5
+      },
+      "flags": [],
+      "ticket_effort_hours": 3.524213,
+      "ticket_latency_hours": 3.526826,
+      "root_engaged_minutes": 243.130583,
+      "root_wait_minutes": 206.172331,
+      "root_own_minutes": 36.958252
+    },
+    "11/05 Mindpowers server/CLI/ACI": {
+      "ticket_count": 12,
+      "status_counts": {
+        "completed": 12
+      },
+      "flags": [],
+      "ticket_effort_hours": 14.609817,
+      "ticket_latency_hours": 15.558511,
+      "root_engaged_minutes": 740.583767,
+      "root_wait_minutes": 564.679811,
+      "root_own_minutes": 175.903956
+    },
+    "11/05 Mindpowers FE": {
+      "ticket_count": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "flags": [
+        "nested"
+      ],
+      "ticket_effort_hours": 3.159955,
+      "ticket_latency_hours": 3.167726,
+      "root_engaged_minutes": 207.4932,
+      "root_wait_minutes": 177.436847,
+      "root_own_minutes": 30.056353
+    },
+    "11/06 MASS Claude item id": {
+      "ticket_count": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.877346,
+      "ticket_latency_hours": 1.877346,
+      "root_engaged_minutes": 271.235533,
+      "root_wait_minutes": 195.915993,
+      "root_own_minutes": 75.319541
+    },
+    "11/06 MASS idle close": {
+      "ticket_count": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "flags": [
+        "handoff_merged"
+      ],
+      "ticket_effort_hours": 9.817813,
+      "ticket_latency_hours": 23.414391,
+      "root_engaged_minutes": 701.388883,
+      "root_wait_minutes": 505.920009,
+      "root_own_minutes": 195.468874
+    },
+    "11/06 agent-sdk tool/MCP": {
+      "ticket_count": 5,
+      "status_counts": {
+        "completed": 5
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.361045,
+      "ticket_latency_hours": 1.365108,
+      "root_engaged_minutes": 203.04485,
+      "root_wait_minutes": 103.510942,
+      "root_own_minutes": 99.533908
+    },
+    "11/06 testify execution tx": {
+      "ticket_count": 3,
+      "status_counts": {
+        "completed": 3
+      },
+      "flags": [],
+      "ticket_effort_hours": 2.643283,
+      "ticket_latency_hours": 2.643283,
+      "root_engaged_minutes": 191.554033,
+      "root_wait_minutes": 0,
+      "root_own_minutes": 191.554033
+    },
+    "11/06 testify official driver": {
+      "ticket_count": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "flags": [],
+      "ticket_effort_hours": 0.855655,
+      "ticket_latency_hours": 0.864983,
+      "root_engaged_minutes": 111.802467,
+      "root_wait_minutes": 48.210118,
+      "root_own_minutes": 63.592348
+    },
+    "11/06 testify peer ref": {
+      "ticket_count": 1,
+      "status_counts": {
+        "completed": 1
+      },
+      "flags": [],
+      "ticket_effort_hours": 0.52434,
+      "ticket_latency_hours": 0.634019,
+      "root_engaged_minutes": 62.1938,
+      "root_wait_minutes": 29.561466,
+      "root_own_minutes": 32.632334
+    },
+    "11/07 testify library entry": {
+      "ticket_count": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "flags": [],
+      "ticket_effort_hours": 2.488432,
+      "ticket_latency_hours": 2.491853,
+      "root_engaged_minutes": 182.050833,
+      "root_wait_minutes": 142.114253,
+      "root_own_minutes": 39.93658
+    },
+    "11/07 agent-sdk unified agent": {
+      "ticket_count": 7,
+      "status_counts": {
+        "completed": 7
+      },
+      "flags": [],
+      "ticket_effort_hours": 7.568484,
+      "ticket_latency_hours": 7.612431,
+      "root_engaged_minutes": 453.372333,
+      "root_wait_minutes": 414.095512,
+      "root_own_minutes": 39.276821
+    },
+    "11/08 testify in-process": {
+      "ticket_count": 3,
+      "status_counts": {
+        "completed": 2,
+        "completed_in_inferred_tail": 1
+      },
+      "flags": [],
+      "ticket_effort_hours": 3.642153,
+      "ticket_latency_hours": 9.970441,
+      "root_engaged_minutes": 264.856217,
+      "root_wait_minutes": 170.278086,
+      "root_own_minutes": 94.57813
+    },
+    "11/09 agent-sdk steer": {
+      "ticket_count": 3,
+      "status_counts": {
+        "completed": 3
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.101447,
+      "ticket_latency_hours": 1.281176,
+      "root_engaged_minutes": 135.45275,
+      "root_wait_minutes": 63.645277,
+      "root_own_minutes": 71.807473
+    },
+    "11/09 agent-sdk execution options": {
+      "ticket_count": 5,
+      "status_counts": {
+        "completed": 4,
+        "running": 1
+      },
+      "flags": [
+        "partial"
+      ],
+      "ticket_effort_hours": 5.156901,
+      "ticket_latency_hours": 5.490908,
+      "root_engaged_minutes": 281.761467,
+      "root_wait_minutes": 244.325896,
+      "root_own_minutes": 37.435571
+    },
+    "11/09 agent-sdk MCP": {
+      "ticket_count": 4,
+      "status_counts": {
+        "completed": 4
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.989841,
+      "ticket_latency_hours": 2.183234,
+      "root_engaged_minutes": 133.2994,
+      "root_wait_minutes": 77.887749,
+      "root_own_minutes": 55.411651
+    },
+    "11/09 agent-sdk tool events": {
+      "ticket_count": 4,
+      "status_counts": {
+        "completed": 4
+      },
+      "flags": [],
+      "ticket_effort_hours": 1.562573,
+      "ticket_latency_hours": 1.562573,
+      "root_engaged_minutes": 149.39415,
+      "root_wait_minutes": 86.70043,
+      "root_own_minutes": 62.69372
+    },
+    "11/09 agent-sdk remove-testify-cli": {
+      "ticket_count": 8,
+      "status_counts": {
+        "completed": 8
+      },
+      "flags": [
+        "nested",
+        "handoff_merged",
+        "remote_compact"
+      ],
+      "ticket_effort_hours": 5.142791,
+      "ticket_latency_hours": 6.406008,
+      "root_engaged_minutes": 364.842617,
+      "root_wait_minutes": 269.785281,
+      "root_own_minutes": 95.057335
+    }
+  },
+  "tickets": [
+    {
+      "run": "11/06 MASS idle close",
+      "label": "06",
+      "status": "completed",
+      "effort_minutes": 111.9298,
+      "latency_minutes": 927.340383,
+      "note": "首轮线程未正式收尾；同一编排根的 finish-gaps 线程完成 T06",
+      "attempt_sids": [
+        "01a1b284-45ee-7e93-b10e-02ec443e7ab2",
+        "01a1b5a2-e953-7751-b55d-53363778b11e"
+      ]
+    },
+    {
+      "run": "11/08 testify in-process",
+      "label": "03",
+      "status": "completed_in_inferred_tail",
+      "effort_minutes": 61.481917,
+      "latency_minutes": 61.481917,
+      "note": "",
+      "attempt_sids": [
+        "01a1be3f-9bf9-7bc1-970f-31b2778489e1"
+      ]
+    },
+    {
+      "run": "11/09 agent-sdk execution options",
+      "label": "05",
+      "status": "running",
+      "effort_minutes": 55.388033,
+      "latency_minutes": 55.388033,
+      "note": "",
+      "attempt_sids": [
+        "01a1c083-6acb-7433-aa7a-d828da875593"
+      ]
+    },
+    {
+      "run": "11/09 agent-sdk remove-testify-cli",
+      "label": "01",
+      "status": "completed",
+      "effort_minutes": 41.32885,
+      "latency_minutes": 95.30555,
+      "note": "首轮 remote-compact 失败；接管修复并做最终核验",
+      "attempt_sids": [
+        "01a1bf50-c365-73f1-933e-28e94200a4ba",
+        "01a1bf6b-a592-7b92-871e-058f3f609900",
+        "01a1bfa3-152e-7c01-81ac-6236c20d2248"
+      ]
+    }
+  ],
+  "long_tail": {
+    "tickets_by_effort": [
+      {
+        "run": "11/06 MASS idle close",
+        "ticket": "02",
+        "status": "completed",
+        "effort_minutes": 232.2014,
+        "latency_minutes": 232.2014
+      },
+      {
+        "run": "11/03 testify session-root",
+        "ticket": "07",
+        "status": "completed",
+        "effort_minutes": 177.986767,
+        "latency_minutes": 177.986767
+      },
+      {
+        "run": "11/05 Mindpowers server/CLI/ACI",
+        "ticket": "S-03",
+        "status": "completed",
+        "effort_minutes": 148.399133,
+        "latency_minutes": 148.399133
+      },
+      {
+        "run": "11/05 Mindpowers server/CLI/ACI",
+        "ticket": "S2",
+        "status": "completed",
+        "effort_minutes": 118.941733,
+        "latency_minutes": 175.2358
+      },
+      {
+        "run": "11/06 MASS idle close",
+        "ticket": "05",
+        "status": "completed",
+        "effort_minutes": 118.860133,
+        "latency_minutes": 119.155283
+      }
+    ],
+    "tickets_by_latency": [
+      {
+        "run": "11/06 MASS idle close",
+        "ticket": "06",
+        "status": "completed",
+        "effort_minutes": 111.9298,
+        "latency_minutes": 927.340383
+      },
+      {
+        "run": "11/08 testify in-process",
+        "ticket": "02",
+        "status": "completed",
+        "effort_minutes": 95.165683,
+        "latency_minutes": 474.862983
+      },
+      {
+        "run": "11/06 MASS idle close",
+        "ticket": "02",
+        "status": "completed",
+        "effort_minutes": 232.2014,
+        "latency_minutes": 232.2014
+      },
+      {
+        "run": "11/03 testify session-root",
+        "ticket": "07",
+        "status": "completed",
+        "effort_minutes": 177.986767,
+        "latency_minutes": 177.986767
+      },
+      {
+        "run": "11/05 Mindpowers server/CLI/ACI",
+        "ticket": "S2",
+        "status": "completed",
+        "effort_minutes": 118.941733,
+        "latency_minutes": 175.2358
+      }
+    ]
+  },
+  "warnings_include": [
+    "11/04 testify tests refactor: 检测到嵌套 run",
+    "11/05 Mindpowers FE: 检测到嵌套 run",
+    "11/06 MASS idle close: 合并了 handoff 或 finish-gaps 线程",
+    "11/06 MASS idle close / T06: 有 2 个 attempt",
+    "11/06 MASS idle close / T06: latency 明显大于 effort",
+    "11/08 testify in-process / T02: latency 明显大于 effort",
+    "11/08 testify in-process / T03: 完成状态由推断尾段得到",
+    "11/09 agent-sdk execution options: run 使用 partial 口径",
+    "11/09 agent-sdk execution options / T05: 状态为 running",
+    "11/09 agent-sdk remove-testify-cli: 检测到嵌套 run",
+    "11/09 agent-sdk remove-testify-cli: 合并了 handoff 或 finish-gaps 线程",
+    "11/09 agent-sdk remove-testify-cli / T01: 有 3 个 attempt"
+  ],
+  "recommendations": [
+    {
+      "topic": "root 等待",
+      "evidence": "66.2 h，占 root engaged 68.5%",
+      "action": "检查串行 ticket 和 wait_threads 的唤醒点；提前启动可并行的 ticket。"
+    },
+    {
+      "topic": "最大 ticket 时间类别",
+      "evidence": "model/edit/untimed 33.7 h，占 41.1%",
+      "action": "抽查最高 effort ticket 的执行记录，核对类别和长尾来源。"
+    },
+    {
+      "topic": "latency 与 effort 差额",
+      "evidence": "30.6 h",
+      "action": "核对跨夜 idle、CI wait、共享 worktree wait 和 attempt 间隔。"
+    },
+    {
+      "topic": "最长 ticket latency",
+      "evidence": "11/06 MASS idle close / T06 927.3 min",
+      "action": "先核验具体等待点，再决定是否使用 handoff 或新的 attempt。"
+    },
+    {
+      "topic": "未正式完成的 ticket",
+      "evidence": "11/08 testify in-process / T03, 11/09 agent-sdk execution options / T05",
+      "action": "用同一 --as-of 重读 session，并补齐完成证据或运行状态。"
+    },
+    {
+      "topic": "嵌套 run",
+      "evidence": "3 个：11/04 testify tests refactor, 11/05 Mindpowers FE, 11/09 agent-sdk remove-testify-cli",
+      "action": "分别解释父 run 和子 run；不要把 effort 总和当作唯一日历时间。"
+    }
+  ]
+}

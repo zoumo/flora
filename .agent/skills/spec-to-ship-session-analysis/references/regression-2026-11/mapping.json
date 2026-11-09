@@ -1,0 +1,1013 @@
+{
+  "schema_version": 1,
+  "name": "regression 2026-11",
+  "analysis": {},
+  "runs": [
+    {
+      "key": "11/03 testify session-root",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-03T15:43:46.562Z",
+      "end": "2026-11-03T23:03:24.374Z",
+      "root_sessions": [
+        "01a1a214-a53d-72c1-9e8d-4a2639a2660c"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1a227-562c-7143-93f6-eff397a23f2d",
+          "sessions": [
+            "01a1a227-562c-7143-93f6-eff397a23f2d"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1a265-e06f-7dd0-a70e-638116c084ef",
+          "sessions": [
+            "01a1a265-e06f-7dd0-a70e-638116c084ef"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1a278-0f38-7832-baa3-fd7b61416647",
+          "sessions": [
+            "01a1a278-0f38-7832-baa3-fd7b61416647"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1a28a-2dc6-7811-aea9-038c4a7d3b9d",
+          "sessions": [
+            "01a1a28a-2dc6-7811-aea9-038c4a7d3b9d"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1a2a7-6e4b-7d22-adf5-6d5f9ff8f099",
+          "sessions": [
+            "01a1a2a7-6e4b-7d22-adf5-6d5f9ff8f099"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1a2c4-8f1a-7c81-8e15-fb5d3d2a0301",
+          "sessions": [
+            "01a1a2c4-8f1a-7c81-8e15-fb5d3d2a0301"
+          ]
+        },
+        {
+          "label": "07",
+          "primary": "01a1a2d6-9565-78d3-bd5e-a72d0772cc0e",
+          "sessions": [
+            "01a1a2d6-9565-78d3-bd5e-a72d0772cc0e"
+          ]
+        },
+        {
+          "label": "08",
+          "primary": "01a1a37f-8785-7941-9fe4-f9fa5bdc750c",
+          "sessions": [
+            "01a1a37f-8785-7941-9fe4-f9fa5bdc750c"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/04 testify session-data-root",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-04T07:31:58.881Z",
+      "end": "2026-11-04T09:28:58.762Z",
+      "root_sessions": [
+        "01a1a572-6af1-7953-b526-5ff5125ca524"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1a580-fa77-7740-b7f7-4485cb6eb07a",
+          "sessions": [
+            "01a1a580-fa77-7740-b7f7-4485cb6eb07a"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1a596-4aff-7df3-b21d-c8a24f2a1222",
+          "sessions": [
+            "01a1a596-4aff-7df3-b21d-c8a24f2a1222"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1a5a1-da55-71b3-b459-be10e17202ab",
+          "sessions": [
+            "01a1a5a1-da55-71b3-b459-be10e17202ab"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1a5af-fcab-7512-a201-17906e8b6485",
+          "sessions": [
+            "01a1a5af-fcab-7512-a201-17906e8b6485"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1a5bb-ab9c-7081-803b-246358b08f4e",
+          "sessions": [
+            "01a1a5bb-ab9c-7081-803b-246358b08f4e"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1a5c6-5f5c-7661-8155-2371ebe26a68",
+          "sessions": [
+            "01a1a5c6-5f5c-7661-8155-2371ebe26a68"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/04 testify protocol simplify",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-04T11:51:58.453Z",
+      "end": "2026-11-04T17:23:50.786Z",
+      "root_sessions": [
+        "01a1a5fe-e4e4-7b81-98a2-21b1787f3855"
+      ],
+      "tickets": [
+        {
+          "label": "11",
+          "primary": "01a1a67a-b5cb-79e3-9522-c9b3df2aed5b",
+          "sessions": [
+            "01a1a67a-b5cb-79e3-9522-c9b3df2aed5b"
+          ]
+        },
+        {
+          "label": "12",
+          "primary": "01a1a685-8106-7561-90bf-aa75e2febe4c",
+          "sessions": [
+            "01a1a685-8106-7561-90bf-aa75e2febe4c"
+          ]
+        },
+        {
+          "label": "13",
+          "primary": "01a1a695-ff5f-7f91-8785-1e2934c186f7",
+          "sessions": [
+            "01a1a695-ff5f-7f91-8785-1e2934c186f7"
+          ]
+        },
+        {
+          "label": "14",
+          "primary": "01a1a6a4-a6a8-7a31-a7fb-eb2413d34b93",
+          "sessions": [
+            "01a1a6a4-a6a8-7a31-a7fb-eb2413d34b93"
+          ]
+        },
+        {
+          "label": "15",
+          "primary": "01a1a6cb-545f-7872-aa30-7b2a90d0b6a3",
+          "sessions": [
+            "01a1a6cb-545f-7872-aa30-7b2a90d0b6a3"
+          ]
+        },
+        {
+          "label": "16",
+          "primary": "01a1a702-d83b-7253-ae83-710186d146e1",
+          "sessions": [
+            "01a1a702-d83b-7253-ae83-710186d146e1"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/04 testify package regroup",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-04T15:51:41.093Z",
+      "end": "2026-11-04T18:13:52.158Z",
+      "root_sessions": [
+        "01a1a71c-6f94-7710-8078-3576f2a0d20d"
+      ],
+      "tickets": [
+        {
+          "label": "18",
+          "primary": "01a1a74e-6d07-7de3-b706-632f605e8846",
+          "sessions": [
+            "01a1a74e-6d07-7de3-b706-632f605e8846"
+          ]
+        },
+        {
+          "label": "19",
+          "primary": "01a1a74e-c091-7473-853c-3737a4426526",
+          "sessions": [
+            "01a1a74e-c091-7473-853c-3737a4426526"
+          ]
+        },
+        {
+          "label": "20",
+          "primary": "01a1a74e-b675-7fe2-97d2-150fd4326d7a",
+          "sessions": [
+            "01a1a74e-b675-7fe2-97d2-150fd4326d7a"
+          ]
+        },
+        {
+          "label": "21",
+          "primary": "01a1a74e-b19f-7e53-bf6e-91da84d7b12f",
+          "sessions": [
+            "01a1a74e-b19f-7e53-bf6e-91da84d7b12f"
+          ]
+        },
+        {
+          "label": "22",
+          "primary": "01a1a74e-ba93-7e02-b790-e70a93d764f0",
+          "sessions": [
+            "01a1a74e-ba93-7e02-b790-e70a93d764f0"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/04 testify tests refactor",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-04T16:16:49.572Z",
+      "end": "2026-11-04T17:23:50.786Z",
+      "root_sessions": [
+        "01a1a702-d83b-7253-ae83-710186d146e1"
+      ],
+      "tickets": [],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/04 agent-sdk testify adapt",
+      "project": "agent-sdk-go",
+      "start": "2026-11-04T18:35:56.423Z",
+      "end": "2026-11-04T21:29:51.816Z",
+      "root_sessions": [
+        "01a1a7d8-9bea-7223-8072-7e2aab7502d6"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1a7ff-b262-7ee1-b2b2-a8c4cb76f8bc",
+          "sessions": [
+            "01a1a7ff-b262-7ee1-b2b2-a8c4cb76f8bc"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1a822-007d-70d1-940f-7c20a8429971",
+          "sessions": [
+            "01a1a822-007d-70d1-940f-7c20a8429971"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1a85a-14c4-7160-8a29-1847831ca81a",
+          "sessions": [
+            "01a1a85a-14c4-7160-8a29-1847831ca81a"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1a869-61be-7b12-8e72-b0b5a5c17fe0",
+          "sessions": [
+            "01a1a869-61be-7b12-8e72-b0b5a5c17fe0"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/05 MASS recording",
+      "project": "MASS",
+      "start": "2026-11-05T07:08:46.175Z",
+      "end": "2026-11-05T14:30:22.031Z",
+      "root_sessions": [
+        "01a1aa89-e1a0-71e0-bce0-742a7a64a57c"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1aae8-0053-7d83-a907-56d8ffd59031",
+          "sessions": [
+            "01a1aae8-0053-7d83-a907-56d8ffd59031"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1ab08-3260-7ed3-aeb1-73b009c736be",
+          "sessions": [
+            "01a1ab08-3260-7ed3-aeb1-73b009c736be"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1ab51-7670-7300-a12f-04d8f508f0dc",
+          "sessions": [
+            "01a1ab51-7670-7300-a12f-04d8f508f0dc"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1ab5b-9381-7dc0-9502-4e5f7be5a5db",
+          "sessions": [
+            "01a1ab5b-9381-7dc0-9502-4e5f7be5a5db"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1ab8a-cdc4-7823-ae0f-d45e570a24d0",
+          "sessions": [
+            "01a1ab8a-cdc4-7823-ae0f-d45e570a24d0"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/05 Mindpowers server/CLI/ACI",
+      "project": "Mindpowers",
+      "start": "2026-11-05T16:02:38.937Z",
+      "end": "2026-11-07T11:54:56.972Z",
+      "root_sessions": [
+        "01a1ac17-7799-73f2-a688-914164a01861"
+      ],
+      "tickets": [
+        {
+          "label": "CLI-01",
+          "primary": "01a1ac8a-9eae-7512-a7f1-b16ccbd06db7",
+          "sessions": [
+            "01a1ac8a-9eae-7512-a7f1-b16ccbd06db7"
+          ]
+        },
+        {
+          "label": "S-02",
+          "primary": "01a1ac8a-a745-7280-88a7-2040f236f9ee",
+          "sessions": [
+            "01a1ac8a-a745-7280-88a7-2040f236f9ee"
+          ]
+        },
+        {
+          "label": "S-03",
+          "primary": "01a1acd1-6998-7971-b29c-ce96a6c55a8d",
+          "sessions": [
+            "01a1acd1-6998-7971-b29c-ce96a6c55a8d"
+          ]
+        },
+        {
+          "label": "S-04",
+          "primary": "01a1ad59-9969-75d3-a894-636e6d1acc8f",
+          "sessions": [
+            "01a1ad59-9969-75d3-a894-636e6d1acc8f"
+          ]
+        },
+        {
+          "label": "S-05",
+          "primary": "01a1ad89-473c-7df0-8256-d3b273fb256c",
+          "sessions": [
+            "01a1ad89-473c-7df0-8256-d3b273fb256c"
+          ]
+        },
+        {
+          "label": "S1",
+          "primary": "01a1b0c7-2f36-7ec0-a681-d25d4deffe26",
+          "sessions": [
+            "01a1b0c7-2f36-7ec0-a681-d25d4deffe26"
+          ]
+        },
+        {
+          "label": "A1",
+          "primary": "01a1b0c7-62a5-7900-a309-892f96cb8b12",
+          "sessions": [
+            "01a1b0c7-62a5-7900-a309-892f96cb8b12"
+          ]
+        },
+        {
+          "label": "A2",
+          "primary": "01a1b0f4-8e6f-7212-a51e-810a7800b6b4",
+          "sessions": [
+            "01a1b0f4-8e6f-7212-a51e-810a7800b6b4"
+          ]
+        },
+        {
+          "label": "S2",
+          "primary": "01a1b108-8095-7dd1-86a5-28b04e3f834c",
+          "sessions": [
+            "01a1b108-8095-7dd1-86a5-28b04e3f834c"
+          ]
+        },
+        {
+          "label": "A3",
+          "primary": "01a1b129-d2c2-7b50-81dc-08d54cbe5a4d",
+          "sessions": [
+            "01a1b129-d2c2-7b50-81dc-08d54cbe5a4d"
+          ]
+        },
+        {
+          "label": "S3",
+          "primary": "01a1b16d-c024-7350-861a-c2bda7650711",
+          "sessions": [
+            "01a1b16d-c024-7350-861a-c2bda7650711"
+          ]
+        },
+        {
+          "label": "S4",
+          "primary": "01a1b1a9-2649-7db2-aca6-a9a43c366c02",
+          "sessions": [
+            "01a1b1a9-2649-7db2-aca6-a9a43c366c02"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/05 Mindpowers FE",
+      "project": "Mindpowers FE",
+      "start": "2026-11-05T15:04:09.595Z",
+      "end": "2026-11-05T18:51:38.174Z",
+      "root_sessions": [
+        "01a1ac18-f13d-7a10-b947-72face3f9b93"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1ac5e-4d38-7090-83c7-886f10ed07a8",
+          "sessions": [
+            "01a1ac5e-4d38-7090-83c7-886f10ed07a8"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1ac7e-75f4-7933-a47b-b25dcc139287",
+          "sessions": [
+            "01a1ac7e-75f4-7933-a47b-b25dcc139287"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1aca1-6f5e-7880-bf46-2022ffbbb4a4",
+          "sessions": [
+            "01a1aca1-6f5e-7880-bf46-2022ffbbb4a4"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1acc4-125e-74d1-9d97-0ee94d8f2230",
+          "sessions": [
+            "01a1acc4-125e-74d1-9d97-0ee94d8f2230"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1acdc-9b06-7410-97c3-4b81fc77b80b",
+          "sessions": [
+            "01a1acdc-9b06-7410-97c3-4b81fc77b80b"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1acec-6711-7f63-9702-4857b45496c7",
+          "sessions": [
+            "01a1acec-6711-7f63-9702-4857b45496c7"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 MASS Claude item id",
+      "project": "MASS",
+      "start": "2026-11-06T08:41:48.198Z",
+      "end": "2026-11-06T16:29:17.923Z",
+      "root_sessions": [
+        "01a1aee6-47e9-7100-9f43-690a609c067c"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b0cc-1e43-7600-b08c-685115a89621",
+          "sessions": [
+            "01a1b0cc-1e43-7600-b08c-685115a89621"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b114-ec06-7201-a235-cab31e10fa93",
+          "sessions": [
+            "01a1b114-ec06-7201-a235-cab31e10fa93"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 MASS idle close",
+      "project": "MASS",
+      "start": "2026-11-06T08:47:09.666Z",
+      "end": "2026-11-07T11:54:38.723Z",
+      "root_sessions": [
+        "01a1b00a-46f9-74c1-8de2-dd60c8f7fa9a"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b0cc-f3db-73f2-8581-5f347fe623d3",
+          "sessions": [
+            "01a1b0cc-f3db-73f2-8581-5f347fe623d3"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b0ed-a436-7323-97a0-6b275db2332b",
+          "sessions": [
+            "01a1b0ed-a436-7323-97a0-6b275db2332b"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1b1c2-9fe8-7eb1-b74e-2a069b229c4f",
+          "sessions": [
+            "01a1b1c2-9fe8-7eb1-b74e-2a069b229c4f"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1b1ef-0e51-7d51-b220-76b50481665a",
+          "sessions": [
+            "01a1b1ef-0e51-7d51-b220-76b50481665a"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1b216-a17a-7351-948b-2c0f88e1b14b",
+          "sessions": [
+            "01a1b216-a17a-7351-948b-2c0f88e1b14b"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1b284-45ee-7e93-b10e-02ec443e7ab2",
+          "sessions": [
+            "01a1b284-45ee-7e93-b10e-02ec443e7ab2"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 agent-sdk tool/MCP",
+      "project": "agent-sdk-go",
+      "start": "2026-11-06T14:01:06.475Z",
+      "end": "2026-11-06T17:40:06.360Z",
+      "root_sessions": [
+        "01a1b0d5-d4d2-7463-b97d-aad8f341b418"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b146-4c3f-7903-a206-e591a793e79e",
+          "sessions": [
+            "01a1b146-4c3f-7903-a206-e591a793e79e"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b15a-f578-7b01-820e-d1e86344e4cc",
+          "sessions": [
+            "01a1b15a-f578-7b01-820e-d1e86344e4cc"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1b169-1cdb-79e3-905e-ded02721849f",
+          "sessions": [
+            "01a1b169-1cdb-79e3-905e-ded02721849f"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1b176-5e7e-7673-8deb-723acdfd6822",
+          "sessions": [
+            "01a1b176-5e7e-7673-8deb-723acdfd6822"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1b197-52c0-7d61-adc7-bebc8095541d",
+          "sessions": [
+            "01a1b197-52c0-7d61-adc7-bebc8095541d"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 testify execution tx",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-06T14:14:36.097Z",
+      "end": "2026-11-06T17:26:10.180Z",
+      "root_sessions": [
+        "01a1b136-19e5-73c3-be86-36b235d641b6"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b13c-7ecb-7492-924d-2f7a4b4b3bbe",
+          "sessions": [
+            "01a1b13c-7ecb-7492-924d-2f7a4b4b3bbe"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b177-a104-7a30-a277-87d8908797c8",
+          "sessions": [
+            "01a1b177-a104-7a30-a277-87d8908797c8"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1b1a0-60f3-7991-bb65-b921ef102642",
+          "sessions": [
+            "01a1b1a0-60f3-7991-bb65-b921ef102642"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 testify official driver",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-06T14:14:39.567Z",
+      "end": "2026-11-06T16:06:27.715Z",
+      "root_sessions": [
+        "01a1b136-2775-7aa0-b46c-a444e4bf8100"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b140-0fb4-7ca0-b3c9-e0e615e0f4ea",
+          "sessions": [
+            "01a1b140-0fb4-7ca0-b3c9-e0e615e0f4ea"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b15a-386f-7883-91fa-3064e7455ac9",
+          "sessions": [
+            "01a1b15a-386f-7883-91fa-3064e7455ac9"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/06 testify peer ref",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-06T14:14:42.216Z",
+      "end": "2026-11-06T15:16:53.844Z",
+      "root_sessions": [
+        "01a1b136-3130-7700-8d7b-4bb4265afc74"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b13e-35c3-7b20-b80f-0c8f463313f4",
+          "sessions": [
+            "01a1b13e-35c3-7b20-b80f-0c8f463313f4"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/07 testify library entry",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-07T14:47:51.933Z",
+      "end": "2026-11-08T01:43:21.594Z",
+      "root_sessions": [
+        "01a1b1a5-8bdd-7523-acf9-540097bb68eb"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b69f-4792-7670-942a-4ffb9013744c",
+          "sessions": [
+            "01a1b69f-4792-7670-942a-4ffb9013744c"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b6ad-3a2d-75e0-a5ea-3c7348bd79bd",
+          "sessions": [
+            "01a1b6ad-3a2d-75e0-a5ea-3c7348bd79bd"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1b6c8-06bb-7633-bb9f-c6cd5144314f",
+          "sessions": [
+            "01a1b6c8-06bb-7633-bb9f-c6cd5144314f"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1b6e9-6f69-71c2-850a-bd62c2c982b9",
+          "sessions": [
+            "01a1b6e9-6f69-71c2-850a-bd62c2c982b9"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1b700-66ab-7d72-b08f-397ab970f362",
+          "sessions": [
+            "01a1b700-66ab-7d72-b08f-397ab970f362"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1b711-0c60-71d0-b0dd-c21f0b5f63cd",
+          "sessions": [
+            "01a1b711-0c60-71d0-b0dd-c21f0b5f63cd"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/07 agent-sdk unified agent",
+      "project": "agent-sdk-go",
+      "start": "2026-11-07T10:32:46.185Z",
+      "end": "2026-11-08T01:45:22.453Z",
+      "root_sessions": [
+        "01a1b43b-8638-7550-b434-7972c2e3b8a2"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1b59f-c7fd-7370-9536-af28ec15e7c3",
+          "sessions": [
+            "01a1b59f-c7fd-7370-9536-af28ec15e7c3"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1b5cc-e58d-7320-adbb-28c2887bceea",
+          "sessions": [
+            "01a1b5cc-e58d-7320-adbb-28c2887bceea"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1b5ee-db51-7812-b7e9-f3af832e56b2",
+          "sessions": [
+            "01a1b5ee-db51-7812-b7e9-f3af832e56b2"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1b65b-9a50-7b92-93bd-4ab43a8092e9",
+          "sessions": [
+            "01a1b65b-9a50-7b92-93bd-4ab43a8092e9"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1b689-c241-7d72-8073-824fc56c0002",
+          "sessions": [
+            "01a1b689-c241-7d72-8073-824fc56c0002"
+          ]
+        },
+        {
+          "label": "06",
+          "primary": "01a1b6d9-5ddd-72f3-a1e0-d9981542217c",
+          "sessions": [
+            "01a1b6d9-5ddd-72f3-a1e0-d9981542217c"
+          ]
+        },
+        {
+          "label": "07",
+          "primary": "01a1b6f4-c552-7ac3-b0b1-0f04d913cbac",
+          "sessions": [
+            "01a1b6f4-c552-7ac3-b0b1-0f04d913cbac"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/08 testify in-process",
+      "project": "agent-sdk-testify",
+      "start": "2026-11-08T18:11:56.935Z",
+      "end": "2026-11-09T05:09:51.892Z",
+      "root_sessions": [
+        "01a1bc5c-1f47-7461-8ca1-1715ebee88c3"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1bc5f-27a6-7551-baa2-64598bee17a9",
+          "sessions": [
+            "01a1bc5f-27a6-7551-baa2-64598bee17a9"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1bc98-5d84-7392-bd63-c81146a9a4d9",
+          "sessions": [
+            "01a1bc98-5d84-7392-bd63-c81146a9a4d9"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1be3f-9bf9-7bc1-970f-31b2778489e1",
+          "sessions": [
+            "01a1be3f-9bf9-7bc1-970f-31b2778489e1"
+          ]
+        }
+      ],
+      "notes": "3 allocated; ticket 03 aborted",
+      "flags": []
+    },
+    {
+      "key": "11/09 agent-sdk steer",
+      "project": "agent-sdk-go",
+      "start": "2026-11-09T11:33:42.530Z",
+      "end": "2026-11-09T14:00:26.496Z",
+      "root_sessions": [
+        "01a1bc20-652a-7692-b499-7126543754d5"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1c04b-bd01-73f0-a852-675d87a6ac00",
+          "sessions": [
+            "01a1c04b-bd01-73f0-a852-675d87a6ac00"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1c077-4368-7643-9bb1-32209a121984",
+          "sessions": [
+            "01a1c077-4368-7643-9bb1-32209a121984"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1c087-7bc2-7dd1-867d-c858fecde365",
+          "sessions": [
+            "01a1c087-7bc2-7dd1-867d-c858fecde365"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    },
+    {
+      "key": "11/09 agent-sdk execution options",
+      "project": "agent-sdk-go",
+      "start": "2026-11-09T09:26:22.057Z",
+      "end": "2026-11-09T14:06:44.376Z",
+      "root_sessions": [
+        "01a1be44-5da1-7391-99c3-9165350dbc4c"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1bfac-5efd-71c2-b74d-856c8822400c",
+          "sessions": [
+            "01a1bfac-5efd-71c2-b74d-856c8822400c"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1bfea-b3db-7653-942e-f9b971269c6e",
+          "sessions": [
+            "01a1bfea-b3db-7653-942e-f9b971269c6e"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1bfea-ca9f-7471-bded-7b006040c2b9",
+          "sessions": [
+            "01a1bfea-ca9f-7471-bded-7b006040c2b9"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1c027-095a-7361-8c4a-aa916730f732",
+          "sessions": [
+            "01a1c027-095a-7361-8c4a-aa916730f732"
+          ]
+        },
+        {
+          "label": "05",
+          "primary": "01a1c083-6acb-7433-aa7a-d828da875593",
+          "sessions": [
+            "01a1c083-6acb-7433-aa7a-d828da875593"
+          ]
+        }
+      ],
+      "notes": "ticket 05 still running at snapshot",
+      "flags": []
+    },
+    {
+      "key": "11/09 agent-sdk MCP",
+      "project": "agent-sdk-go",
+      "start": "2026-11-09T10:04:29.025Z",
+      "end": "2026-11-09T12:57:56.331Z",
+      "root_sessions": [
+        "01a1be50-4684-7472-b165-c13184778028"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1bfd3-0ba8-7461-8b41-7b48bbdbef92",
+          "sessions": [
+            "01a1bfd3-0ba8-7461-8b41-7b48bbdbef92"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1bff7-f3da-7250-bfef-b8da508fabd3",
+          "sessions": [
+            "01a1bff7-f3da-7250-bfef-b8da508fabd3"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1bff7-fb1d-70f1-b330-42d907c3cd64",
+          "sessions": [
+            "01a1bff7-fb1d-70f1-b330-42d907c3cd64"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1c018-fc88-7932-9284-f809c15328eb",
+          "sessions": [
+            "01a1c018-fc88-7932-9284-f809c15328eb"
+          ]
+        }
+      ],
+      "notes": "ticket 03 hit tool-loop guard",
+      "flags": []
+    },
+    {
+      "key": "11/09 agent-sdk tool events",
+      "project": "agent-sdk-go",
+      "start": "2026-11-09T11:06:25.511Z",
+      "end": "2026-11-09T13:48:57.498Z",
+      "root_sessions": [
+        "01a1be69-4b97-74e0-b854-774ffdde0c83"
+      ],
+      "tickets": [
+        {
+          "label": "01",
+          "primary": "01a1c015-5786-7422-8231-68c4e982592f",
+          "sessions": [
+            "01a1c015-5786-7422-8231-68c4e982592f"
+          ]
+        },
+        {
+          "label": "02",
+          "primary": "01a1c033-0e83-7c91-8b39-746ae2b47eef",
+          "sessions": [
+            "01a1c033-0e83-7c91-8b39-746ae2b47eef"
+          ]
+        },
+        {
+          "label": "03",
+          "primary": "01a1c024-4300-7af3-beae-1ecc2021784d",
+          "sessions": [
+            "01a1c024-4300-7af3-beae-1ecc2021784d"
+          ]
+        },
+        {
+          "label": "04",
+          "primary": "01a1c048-5409-7222-8baa-e532420c51a3",
+          "sessions": [
+            "01a1c048-5409-7222-8baa-e532420c51a3"
+          ]
+        }
+      ],
+      "notes": "",
+      "flags": []
+    }
+  ]
+}

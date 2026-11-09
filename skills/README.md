@@ -11,6 +11,7 @@
 ## 自有 Skill
 
 - [flora-flow](flora-flow/SKILL.md)：从需求澄清推进到规范、ticket 拆分和逐 ticket 独立实现。
+- [codex-sub-thread](codex-sub-thread/SKILL.md)：通过 Codex app MCP 创建、管理独立 sub-thread，并处理父子 thread 回调；MCP 不可用时回退到 subagent。
 - [deepmodule-design](deepmodule-design/SKILL.md)：设计语言无关的深模块，用 TypeSpec 定义接口和数据结构。
 - [harness-agent](harness-agent/SKILL.md)：初始化 harness、合并根入口，并配置后续 Agent 的文档与写入规则。
 - [less-is-more](less-is-more/SKILL.md)：简化代码、接口和架构，减少不必要的概念与机制。

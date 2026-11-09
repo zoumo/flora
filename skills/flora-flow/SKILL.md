@@ -1,6 +1,6 @@
 ---
 name: flora-flow
-description: 按顺序执行需求澄清、本地规范、ticket 拆分和逐 ticket 独立实现。固定使用集成分支和独立 worktree。集成上下文处理简单协作，复杂实现和独立 review 委派给工作上下文。
+description: 按顺序执行需求澄清、本地规范、ticket 拆分和逐 ticket 独立实现。固定使用集成分支和独立 worktree。集成上下文处理简单协作，复杂实现和独立 review 优先委派给带回调的独立 sub-thread；thread MCP 不可用时降级到 subagent。
 disable-model-invocation: true
 argument-hint: "[--fast | --strict]"
 ---
@@ -33,7 +33,7 @@ argument-hint: "[--fast | --strict]"
 - 负责流程决策、调度和汇总，并完成简单协作工作。
 - 不执行复杂任务。需要修改实现、独立判断或长时间排查的工作必须委派。
 - 不为每项操作新建上下文。能在当前 thread 连续完成的简单操作，直接完成。
-- 不等待或轮询工作 thread。独立 thread 启动后结束当前 turn，收到回调再继续。
+- 不等待或轮询工作 sub-thread。独立 sub-thread 启动后结束当前 turn，收到回调再继续。
 
 **职责**
 
@@ -47,38 +47,41 @@ argument-hint: "[--fast | --strict]"
 - coding、独立 `code-review`、完整测试和验证、复杂冲突处理、故障排查和多文件修改必须委派。
 - 聚焦检查未通过时，不自行修复。交回 ticket 实现上下文，或委派新的修复上下文。
 - 可以在集成 worktree 中编辑简单的规范、ticket 和流程状态。
-- 不调用 `mcp__codex_app__wait_threads` 或 `wait_agent` 等待独立工作 thread。
+- 不调用 `mcp__codex_app__wait_threads` 或 `wait_agent` 等待独立工作 sub-thread。
 
-### 工作 thread 或 subagent
+### 工作 sub-thread（优先）或 subagent
 
 工作上下文承接复杂规划、ticket 实现、复杂冲突处理、修复和独立 review 任务。
 
 **工作模式**
 
-- 需要独立观察、长时间执行或多个回调的工作，用 `mcp__codex_app__create_thread` 创建独立 thread。工具未加载时先加载。
-- 短时、内部、完成后只需返回结果的委派，优先用 subagent。
-- 工具不可用、集成 thread ID 不可得或创建失败时，改用 subagent。
+- 委派工作上下文时，先读取 `codex-sub-thread` skill，按该 skill 创建独立 sub-thread。
+- 优先使用 `mcp__codex_app__create_thread` 创建独立 sub-thread。
+- 创建前先获取父 thread ID：运行 `printf '%s\n' "$CODEX_THREAD_ID"`。变量为空时，停止创建并询问用户。
+- 把父 thread ID 和回调要求写入 sub-thread 的首条任务。要求它遇到问题、阻塞、失败或完成时回调父 thread。
+- 仅当用户明确要求 subagent，或 thread MCP 不可用、创建失败时，才使用 subagent。
+- thread MCP 不可用时，按 `codex-sub-thread` 的回退步骤使用 subagent，并报告降级原因。
 - 每个上下文负责一个完整交付物。同一交付物的连续操作不拆给多个上下文。
 
 **职责**
 
 - 完成分配的工作，运行对应检查，并报告结果。
-- 独立 thread 启动时接收集成 thread ID 和回调要求。集成 thread ID 从环境变量 `CODEX_THREAD_ID` 获取；变量为空时，由集成上下文询问用户。
-- 独立 thread 在完成、失败或阻塞后，用 `mcp__codex_app__send_message_to_thread` 回调集成 thread，然后结束当前 turn。
+- 集成上下文创建 sub-thread 时，必须在首条任务中写入 `父 thread ID: <CODEX_THREAD_ID>`，并明确要求工作 sub-thread 遇到问题、阻塞、失败或完成时回调。
+- 独立 sub-thread 在遇到问题、阻塞、失败或完成后，用 `mcp__codex_app__send_message_to_thread` 回调父 thread，然后结束当前 turn。
 - 回调写明任务、分支、提交 SHA、合并状态、检查结果和遗留风险。失败或阻塞时，另写原因和下一步。
 - subagent 不发送回调，直接返回结果。
 - ticket 实现上下文不合并到集成分支。
 
-**授权**
+**回调规则**
 
-- 调用本 skill 即授权创建独立 thread 和发送最终状态回调。
+- 调用本 skill 即要求创建独立 sub-thread，并要求它在遇到问题、阻塞、失败或完成时回调父 thread。
 
-### review 和验证 thread 或 subagent
+### review 和验证 sub-thread（优先）或 subagent
 
 **工作模式**
 
-- 必须新建独立上下文，不复用任何已有工作 thread 或 subagent。
-- 创建方式、降级方式、回调和交接规则同工作 thread 或 subagent。
+- 必须新建独立上下文，不复用任何已有工作 sub-thread 或 subagent。
+- 创建方式、降级方式、回调和交接规则同工作 sub-thread 或 subagent，并遵循 `codex-sub-thread` skill。
 
 **职责**
 
@@ -94,8 +97,8 @@ argument-hint: "[--fast | --strict]"
    - 按 `运行模式` 章节确定运行模式。
 3. **生成规范和 ticket**（集成上下文；复杂任务委派规划工作上下文）
    - 简单任务由集成上下文在集成 worktree 中调用 `to-spec` 和 `to-tickets`，跳过 `to-tickets` 的拆分确认。
-   - 需求复杂、拆分复杂或当前上下文不足时，委派一个规划工作 thread 或 subagent。
-   - 规划输入：需求、目标分支、运行模式、集成 worktree。
+   - 需求复杂、拆分复杂或当前上下文不足时，优先委派一个规划工作 sub-thread。thread MCP 不可用或用户明确要求时，使用 subagent。
+   - 规划输入：需求、目标分支、运行模式、集成 worktree、父 thread ID 和回调要求。
    - 规范：将运行模式和验收要求写入规范及每张 ticket。
    - 提交：规范目录 `<integration-worktree>/.scratch/<feature-slug>/` 未被 Git 忽略时提交到集成分支。
    - Tracker：本地规范返回绝对路径 `SPEC_DIR`；外部 tracker 返回 issue 标识或 URL。
@@ -105,14 +108,14 @@ argument-hint: "[--fast | --strict]"
    - 最终集成分支。
    - 执行模式：快速模式或严格模式。
    - 预估时间：从开始 ticket 到最终完成的总时长。无法可靠估算时写“待确认”。
-5. **实现 ticket**（每张 ticket 一个 ticket 实现 thread 或 subagent）
-   - 输入：ticket 引用、`SPEC_DIR`、目标分支、运行模式、ticket 分支 `<feature-slug>/<NN>-<slug>` 和 worktree `<repo>-worktrees/<feature-slug>/<NN>-<slug>`。外部 tracker 传 issue 标识或 URL。
+5. **实现 ticket**（每张 ticket 一个 ticket 实现 sub-thread，优先独立 sub-thread）
+   - 输入：ticket 引用、`SPEC_DIR`、目标分支、运行模式、ticket 分支 `<feature-slug>/<NN>-<slug>`、worktree `<repo>-worktrees/<feature-slug>/<NN>-<slug>`、父 thread ID 和回调要求。外部 tracker 传 issue 标识或 URL。
    - 工作：从目标分支创建 ticket 分支和 worktree。
    - 约束：当前分支不等于 ticket 分支时停止并报告。
    - 工作：在 ticket worktree 中调用 `implement`，提交到 ticket 分支，将目标分支合并到 ticket 分支，运行必要检查。
    - 约束：ticket 实现上下文不合并到集成分支。
    - 返回：ticket 分支、worktree、提交 SHA、合并状态和检查结果。
-6. **严格模式 review 和验证**（每张 ticket 一个 review 和验证 thread 或 subagent）
+6. **严格模式 review 和验证**（每张 ticket 一个 review 和验证 sub-thread，优先独立 sub-thread）
    - 条件：仅严格模式。
    - 输入：ticket 引用、`SPEC_DIR`、ticket 分支、worktree、提交 SHA 和必要检查结果。
    - 工作：运行 `code-review`、完整测试和验证。
@@ -120,14 +123,14 @@ argument-hint: "[--fast | --strict]"
    - 返回：`code-review`、测试和验证结果。
 7. **合并、归档和清理 ticket**（集成上下文）
    - 触发：快速模式收到 ticket 返回值；严格模式收到 review 和验证通过结果。
-   - 输入：ticket 分支、worktree、提交 SHA 和 ticket 实现 thread ID（如果是独立 thread）。
+   - 输入：ticket 分支、worktree、提交 SHA 和 ticket 实现 sub-thread ID。
    - 工作：在集成 worktree 中确认当前分支是目标分支，运行 `git merge --no-ff <ticket-branch>`，生成合并提交，运行既定的目标分支聚焦检查。
    - 收尾：检查通过后，标记 ticket 完成。
-   - 归档：调用 `mcp__codex_app__set_thread_archived` 归档 ticket 实现 thread（如果存在）。
+   - 归档：调用 `mcp__codex_app__set_thread_archived` 归档 ticket 实现 sub-thread（如果存在）。
    - 清理：删除 ticket worktree 和 ticket 分支。
    - 约束：普通合并、归档和清理只在集成 thread 完成。
    - 约束：冲突、检查失败或需要修改代码时，保留 ticket worktree 和分支，交回原 ticket 上下文或委派修复上下文。
-8. **快速模式最终 review 和验证**（review 和验证 thread 或 subagent）
+8. **快速模式最终 review 和验证**（review 和验证 sub-thread，优先独立 sub-thread）
    - 条件：仅快速模式，且全部 ticket 已合并。
    - 输入：目标分支、集成 worktree、`SPEC_DIR`、ticket 列表和合并提交。
    - 工作：运行全量 `code-review`、验证和完整测试。
@@ -143,7 +146,7 @@ argument-hint: "[--fast | --strict]"
 
 - 依赖未完成的 ticket 不启动。
 - 禁止直接向 `main` 或 `master` 提交 ticket。
-- 工作 thread 只回调。归档和清理由集成 thread 完成。
+- 独立工作 sub-thread 必须回调父 thread；subagent 直接返回结果。归档和清理由集成 thread 完成。
 - 简单协作在集成上下文完成，复杂工作和独立 review 必须委派。
 - 用户只要求规划时，完成步骤 1 至 4 后停止。
 - skill 调用细节以各自说明为准。

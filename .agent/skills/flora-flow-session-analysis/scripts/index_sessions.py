@@ -344,7 +344,7 @@ def choose_files(
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Index Codex session JSONL files for spec-to-ship analysis."
+        description="Index Codex session JSONL files for flora-flow analysis."
     )
     parser.add_argument("--since", required=True, help="Local start date, YYYY-MM-DD")
     parser.add_argument("--until", required=True, help="Local end date, YYYY-MM-DD")

@@ -117,7 +117,7 @@ def check_tickets(
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Compare a spec-to-ship report with regression expectations."
+        description="Compare a flora-flow report with regression expectations."
     )
     parser.add_argument("--report", required=True)
     parser.add_argument("--expected", required=True)

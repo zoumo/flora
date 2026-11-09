@@ -1,18 +1,19 @@
 ---
-name: spec-to-ship-session-analysis
-description: 分析 Codex 本地 session JSONL 中实际执行 spec-to-ship 的 run，按时间窗口统计 run、ticket、阶段、effort、latency、等待和时间归因。用于历史运行统计、长尾定位、未收尾线程核验和 handoff 合并；不用于执行 spec-to-ship，也不分析 Claude 或其他 agent 的 session。
+name: flora-flow-session-analysis
+description: 分析 Codex 本地 session JSONL 中实际执行 flora-flow（旧名 spec-to-ship）的 run，按时间窗口统计 run、ticket、阶段、effort、latency、等待和时间归因。用于历史运行统计、长尾定位、未收尾线程核验和 handoff 合并；不用于执行 flora-flow，也不分析 Claude 或其他 agent 的 session。
 ---
 
-# spec-to-ship Session 分析
+# flora-flow Session 分析
 
-本 skill 分析 Codex 实际执行 `spec-to-ship` 的历史运行。
-本 skill 不执行 `spec-to-ship`，不修改 ticket，也不把讨论、维护和分析 session 算作运行。
+本 skill 分析 Codex 实际执行 `flora-flow` 的历史运行。
+旧名 `spec-to-ship` 仍作为输入别名识别，历史 session 不受影响。
+本 skill 不执行 `flora-flow`，不修改 ticket，也不把讨论、维护和分析 session 算作运行。
 
 ## 适用条件
 
 用户要求完成下列任务之一时，使用本 skill：
 
-- 统计指定时间窗内的 `spec-to-ship` run 和 ticket。
+- 统计指定时间窗内的 `flora-flow` run 和 ticket。
 - 计算 ticket effort、ticket latency、阶段时长和时间归因。
 - 分析长尾 ticket、等待、重试、嵌套 run 或 handoff。
 - 核验运行快照中未收尾的 session。
@@ -31,6 +32,7 @@ description: 分析 Codex 本地 session JSONL 中实际执行 spec-to-ship 的 
 5. 当前分析 session、skill 维护 session 和只讨论方法的 session 必须排除。
 6. 报告公开前，检查嵌套 run、共享 worktree、跨夜 idle、remote-compact 和未正式收尾线程。
 7. 原始 session 可能包含私有内容。默认只输出聚合结果和必要 session ID。
+8. `spec-to-ship` 只是旧名别名。发现逻辑同时接受新旧名称，报告使用 `flora-flow`。
 
 时间、状态和归因的定义见
 [references/method.md](references/method.md)。
@@ -42,8 +44,8 @@ description: 分析 Codex 本地 session JSONL 中实际执行 spec-to-ship 的 
 设置目录、时间窗和快照。
 
 ```bash
-SKILL_DIR=.agent/skills/spec-to-ship-session-analysis
-OUT=/tmp/spec-to-ship-analysis
+SKILL_DIR=.agent/skills/flora-flow-session-analysis
+OUT=/tmp/flora-flow-analysis
 mkdir -p "$OUT"
 
 SINCE=2026-11-03
@@ -95,7 +97,7 @@ rtk python3 "$SKILL_DIR/scripts/discover_runs.py" \
 从 `discovered.json` 复制候选，逐项核验：
 
 - 删除弱提及、讨论、维护和当前分析 session。
-- 确认 root session 属于正式 `spec-to-ship` 执行。
+- 确认 root session 属于正式 `flora-flow` 执行。
 - 把 root、ticket、attempt 和状态写入 canonical mapping。
 - 拆分嵌套 run。
 - 合并 handoff、finish-gaps 和接管线程。

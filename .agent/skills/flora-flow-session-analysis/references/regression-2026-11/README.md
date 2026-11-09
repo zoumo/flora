@@ -16,6 +16,7 @@
 
 fixture 不包含原始 JSONL。
 本机 session 改变后，旧 fixture 仍可用于检查算法口径，但不能代替新的抽样核验。
+fixture 覆盖旧名 `spec-to-ship` 时期，发现逻辑必须同时识别两个名称。
 
 ## 预期结果
 
@@ -41,9 +42,9 @@ fixture 不包含原始 JSONL。
 在工作区根目录运行：
 
 ```bash
-SKILL_DIR=.agent/skills/spec-to-ship-session-analysis
+SKILL_DIR=.agent/skills/flora-flow-session-analysis
 FIXTURE="$SKILL_DIR/references/regression-2026-11"
-OUT=/tmp/spec-regression-2026-11
+OUT=/tmp/flora-regression-2026-11
 mkdir -p "$OUT"
 
 rtk python3 "$SKILL_DIR/scripts/index_sessions.py" \

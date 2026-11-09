@@ -1323,7 +1323,7 @@ def analyze(
 def markdown_report(report: dict[str, Any], timezone_name: str) -> str:
     summary = report["summary"]
     lines: list[str] = []
-    lines.append("# Codex spec-to-ship Session 分析")
+    lines.append("# Codex flora-flow Session 分析")
     lines.append("")
     lines.append(f"- 生成时间：{report['generated_at']}")
     lines.append(f"- 映射名称：{report['mapping']['name'] or '未命名'}")
@@ -1552,7 +1552,7 @@ def markdown_report(report: dict[str, Any], timezone_name: str) -> str:
         "3. 检查跨夜 idle、共享 worktree 导致的 dependency wait、remote-compact/retry。"
     )
     lines.append(
-        "4. 检查嵌套 spec-to-ship、handoff、finish-gaps 和重复 fork 线程是否已合并。"
+        "4. 检查嵌套 flora-flow、handoff、finish-gaps 和重复 fork 线程是否已合并。"
     )
     lines.append(
         "5. 检查长命令分类。命令包装、make target 和脚本名称可能改变测试与构建的归类。"
@@ -1573,7 +1573,7 @@ def markdown_report(report: dict[str, Any], timezone_name: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Analyze reviewed Codex spec-to-ship run mappings."
+        description="Analyze reviewed Codex flora-flow run mappings."
     )
     parser.add_argument("--index", required=True, help="Index from index_sessions.py")
     parser.add_argument("--mapping", required=True, help="Reviewed run mapping JSON")

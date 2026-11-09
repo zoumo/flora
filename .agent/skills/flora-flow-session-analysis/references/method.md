@@ -10,13 +10,14 @@
 
 ### Run
 
-一次正式执行 `spec-to-ship` 的编排范围。
+一次正式执行 `flora-flow` 的编排范围。
+旧名 `spec-to-ship` 也归入同一 run 定义。
 一个 run 包含至少一个 root session，以及人工分配的 ticket。
 讨论、维护和当前分析 session 不属于 run。
 
 ### Ticket
 
-`spec-to-ship` 产生的一张实现 ticket。
+`flora-flow` 产生的一张实现 ticket。
 一个 ticket 包含一个或多个 attempt session。
 `primary` 是报告代表线程，不改变 attempt 的统计范围。
 
@@ -52,7 +53,7 @@ session 可能有多个 turn。
 
 1. trigger 为 `app_tool_create_thread`、`app_tool_send_message`
    或 `resume_interrupted_task` 的 turn。
-2. 由父 turn 触发的 `send_user_message_async_question` turn。
+2. 父 turn 触发的 `send_user_message_async_question` turn。
 3. session 的全部 turn。
 
 `resume_interrupted_task` 默认不进入相关 turn。
@@ -246,7 +247,7 @@ run 或 ticket 集合未完整采集。
 
 ### nested
 
-该 run 是另一个 `spec-to-ship` 执行的一部分。
+该 run 是另一个 `flora-flow` 执行的一部分。
 此 flag 用于提醒重叠。脚本不自动删除嵌套双重计时。
 
 ### handoff_merged

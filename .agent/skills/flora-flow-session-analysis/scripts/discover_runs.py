@@ -21,11 +21,18 @@ from common import (
 )
 
 
-STRONG_MARKERS = (
-    "$spec-to-ship",
-    "/spec-to-ship",
-    "[spec-to-ship](",
-    "<name>spec-to-ship</name>",
+SKILL_NAME = "flora-flow"
+LEGACY_SKILL_NAME = "spec-to-ship"
+SKILL_NAMES = (SKILL_NAME, LEGACY_SKILL_NAME)
+STRONG_MARKERS = tuple(
+    marker
+    for name in SKILL_NAMES
+    for marker in (
+        f"${name}",
+        f"/{name}",
+        f"[{name}](",
+        f"<name>{name}</name>",
+    )
 )
 IMPLEMENT_MARKERS = ("$implement", "`implement`", " implement skill", "实现 skill")
 ANALYSIS_MARKERS = ("分析", "统计", "回顾", "analyze", "analysis", "report")
@@ -106,8 +113,9 @@ def candidate_anchors(
         evidence = strong_evidence(record)
         if not evidence:
             for message in record["user_messages"]:
-                if message.get("prov") == "user" and "spec-to-ship" in (
-                    message.get("text") or ""
+                text = message.get("text") or ""
+                if message.get("prov") == "user" and any(
+                    name in text for name in SKILL_NAMES
                 ):
                     weak_mentions += 1
                     break
@@ -388,7 +396,7 @@ def markdown_candidates(
     weak_mentions: int,
 ) -> str:
     lines = [
-        "# spec-to-ship run 候选",
+        "# flora-flow run 候选（兼容旧名 spec-to-ship）",
         "",
         f"- 候选 run：{len(draft['runs'])}",
         f"- 弱提及但不自动纳入：{weak_mentions}",
@@ -437,7 +445,7 @@ def markdown_candidates(
     lines.append("1. 删除讨论、维护、统计和当前分析 session。")
     lines.append("2. 合并 handoff、finish-gaps、重复 fork 和同一 run 的多个 root。")
     lines.append("3. 把 take-over、remote-compact 和 retry session 放到同一 ticket 的 attempts。")
-    lines.append("4. 拆分嵌套 spec-to-ship run。")
+    lines.append("4. 拆分嵌套 flora-flow run。")
     lines.append("5. 修正 run key、project、start、end、ticket status 和 note。")
     lines.append("")
     return "\n".join(lines)
@@ -445,7 +453,7 @@ def markdown_candidates(
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Discover candidate Codex spec-to-ship runs from an index."
+        description="Discover candidate Codex flora-flow runs from an index."
     )
     parser.add_argument("--index", required=True)
     parser.add_argument("--out-mapping", required=True)

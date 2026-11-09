@@ -2,15 +2,16 @@
 
 自动发现只提供两类候选：
 
-- 有强 `spec-to-ship` 证据的 session。
+- 有强 `flora-flow` 证据的 session。
 - 可由标签和父子关系推断的 ticket session。
 
+发现逻辑同时接受旧名 `spec-to-ship`。
 自动发现不判断正式运行范围。
 下列项目必须人工确认。
 
 ## 1. 核验 run 边界
 
-- 确认用户明确启动或继续 `spec-to-ship`。
+- 确认用户明确启动或继续 `flora-flow`。
 - 确认 root session 执行 ticket 拆分或编排，不只讨论方法。
 - 确认 run 的首个有效证据早于或等于 `start`。
 - 确认 run 的 `end` 覆盖最后一个有效 root 或 ticket 事件。
@@ -18,7 +19,7 @@
 
 删除下列候选：
 
-- 询问 `spec-to-ship` 用法。
+- 询问 `flora-flow` 用法。
 - 修改或维护 skill。
 - 讨论历史统计。
 - 当前分析 session。
@@ -31,7 +32,7 @@
 - 确认 planning、handoff 和 finish-gaps 线程属于同一 run。
 - 检查同一 run 是否被候选发现拆成两个 root。
 - 检查父线程是否只发送初始 prompt，没有参与后续编排。
-- 检查子线程是否独立执行了另一套 `spec-to-ship`。
+- 检查子线程是否独立执行了另一套 `flora-flow`。
 
 独立执行的子线程写入新 run。
 共享同一 ticket 集合的接管线程写入同一 run。
@@ -130,13 +131,13 @@ root wait 只扣除 `wait_threads`。
 2. 最终完成或核验线程写入 `primary`。
 3. 在 `note` 记录失败原因和接管关系。
 4. run flag 增加 `remote_compact`。
-5. 检查同一事件是否被两个 session 重复计入。
+5. 检查两个 session 是否重复计入同一事件。
 
 ## 10. 嵌套 run
 
 出现下列证据时检查嵌套：
 
-- root 在一个 `spec-to-ship` ticket 中启动另一个 `spec-to-ship`。
+- root 在一个 `flora-flow` ticket 中启动另一个 `flora-flow`。
 - 子 run 有独立 ticket 集合。
 - 父子 run 同时有 active 区间。
 
@@ -179,7 +180,7 @@ root wait 只扣除 `wait_threads`。
 
 当前分析 session 可能出现下列强标记：
 
-- user 要求分析 `spec-to-ship`。
+- user 要求分析 `flora-flow`。
 - 读取本 skill。
 - 运行 `discover_runs.py`。
 - 讨论 ticket 统计。

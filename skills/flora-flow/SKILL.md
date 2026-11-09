@@ -40,7 +40,7 @@ argument-hint: "[--fast | --strict]"
 - 确认 Git Flow 和运行模式。
 - 检查 Git 状态，完成简单的规范整理、普通合并、聚焦检查和清理。
 - 按依赖顺序委派复杂工作和独立 review，传递任务输入和返回要求。
-- 接收结果，输出执行前报告和最终报告。
+- 接收结果并输出报告。普通合并、归档和清理只由集成 thread 完成。
 
 **委派边界**
 
@@ -118,12 +118,14 @@ argument-hint: "[--fast | --strict]"
    - 工作：运行 `code-review`、完整测试和验证。
    - 约束：不修改代码。发现缺陷时，交回原 ticket 实现上下文；原上下文不可用时，委派新的修复上下文。修复后创建新的 review 和验证上下文。
    - 返回：`code-review`、测试和验证结果。
-7. **合并 ticket**（集成上下文）
+7. **合并、归档和清理 ticket**（集成上下文）
    - 触发：快速模式收到 ticket 返回值；严格模式收到 review 和验证通过结果。
    - 输入：ticket 分支、worktree、提交 SHA 和 ticket 实现 thread ID（如果是独立 thread）。
    - 工作：在集成 worktree 中确认当前分支是目标分支，运行 `git merge --no-ff <ticket-branch>`，生成合并提交，运行既定的目标分支聚焦检查。
-   - 收尾：检查通过后，标记 ticket 完成，归档 ticket 实现 thread（如果存在），删除 ticket worktree 和 ticket 分支。
-   - 约束：不为普通合并另建工作上下文。
+   - 收尾：检查通过后，标记 ticket 完成。
+   - 归档：调用 `mcp__codex_app__set_thread_archived` 归档 ticket 实现 thread（如果存在）。
+   - 清理：删除 ticket worktree 和 ticket 分支。
+   - 约束：普通合并、归档和清理只在集成 thread 完成。
    - 约束：冲突、检查失败或需要修改代码时，保留 ticket worktree 和分支，交回原 ticket 上下文或委派修复上下文。
 8. **快速模式最终 review 和验证**（review 和验证 thread 或 subagent）
    - 条件：仅快速模式，且全部 ticket 已合并。
@@ -134,12 +136,14 @@ argument-hint: "[--fast | --strict]"
    - 返回：`code-review`、测试和验证结果。
 9. **汇总结果**（集成上下文）
    - 输出目标分支、集成 worktree、规范位置或 tracker 标识、ticket 列表、合并提交，以及 review、测试和验证结果。
+   - 输出归档和清理结果。
    - 保留集成分支和集成 worktree，不自动合并到 `main` 或 `master`。
 
 ## 规则
 
 - 依赖未完成的 ticket 不启动。
 - 禁止直接向 `main` 或 `master` 提交 ticket。
+- 工作 thread 只回调。归档和清理由集成 thread 完成。
 - 简单协作在集成上下文完成，复杂工作和独立 review 必须委派。
 - 用户只要求规划时，完成步骤 1 至 4 后停止。
 - skill 调用细节以各自说明为准。

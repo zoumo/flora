@@ -63,10 +63,12 @@
 
 边界：
 
-- `create_thread` 只用于用户明确要求的新任务，或本 skill 明确要求创建 sub-thread。
+- `create_thread` 的创建条件以平台指令为准。skill 不扩大创建权限。
 - 调用前先调用 `list_projects` 获取 `projectId`。
 - 默认使用 `local`。不要静默创建 worktree。
 - `worktree` 只用于 Git 仓库。
+- `worktree` target 会创建一个新的 Codex worktree，不能指定已有绝对路径。
+- 调用方已经创建 worktree 时，使用 `local` target，并在 prompt 中写绝对工作目录。
 - 云端 target 只在用户明确要求时使用。
 - 创建是非阻塞的。可能返回 `threadId` 和 `hostId`，也可能只返回 `clientThreadId`。
 - `clientThreadId` 不是 `threadId`。不要把 `clientThreadId` 传给其他 thread 工具。
@@ -179,7 +181,9 @@
 - 不要高频轮询。
 - 需要等待时，使用一次有界调用。
 - 任务可以并行时，一次等待多个目标。
-- 有回调时，优先让回调唤醒父 thread，不依赖持续等待。
+- 平台要求显式等待时，使用有界等待并传递新 cursor。
+- 平台允许结束 turn 且回调可用时，等待回调。
+- 中断后先核对原执行，不因无新输出重复创建或重跑。
 
 ## send_message_to_thread
 
@@ -194,6 +198,8 @@
 
 边界：
 
+- 默认不回调。调用方在首条任务中明确要求回调时，子 thread 才发送回调。
+- 要求回调时，创建前必须确认此工具可用。工具不可用时，不能声称已建立回调。
 - 只向创建它的父 thread 发送回调，不向无关 thread 发送。
 - 消息会显示为目标 thread 中的用户可见消息。
 - prompt 要写清楚任务、范围、完成标准和是否需要继续回调。

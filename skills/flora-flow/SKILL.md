@@ -1,152 +1,66 @@
 ---
 name: flora-flow
-description: 按顺序执行需求澄清、本地规范、ticket 拆分和逐 ticket 独立实现。固定使用集成分支和独立 worktree。集成上下文处理简单协作，复杂实现和独立 review 优先委派给带回调的独立 sub-thread；thread MCP 不可用时降级到 subagent。
+description: 统一开发流程入口。按用户意图、影响范围和验证要求，自动匹配简单修复、快速模式或严格模式。选择后仅读取对应 playbook，按任务确定完成证据。
 disable-model-invocation: true
-argument-hint: "[--fast | --strict]"
+argument-hint: "[--simple | --fast | --strict] <任务>"
 ---
 
 # Flora Flow
 
-## Git Flow
+## 执行边界
 
-- 当前分支是 `main` 或 `master` 时，创建集成分支 `<feature-slug>` 和集成 worktree `<repo>-worktrees/<feature-slug>/integration`。不询问确认。目标分支是集成分支。
-- 当前分支不是 `main` 或 `master` 时，询问当前分支是否作为集成分支。回答“是”时，目标分支是当前分支，当前 worktree 是集成 worktree。回答“否”时，停止并询问方案。
-- 当前目录不是 Git 仓库、工作区不干净或 HEAD 分离时，停止并询问用户。
-- `<feature-slug>` 使用小写短横线格式。`<repo>` 是仓库根目录名。创建新分支或新 worktree 时，同名对象已存在则停止并询问用户。
+先识别本次交付范围和停止点。
+用户只要求分析、设计或规划时，输出对应结果后停止。
+这类请求不创建执行工作区或 ticket，也不启动实现。
+输出结论前，读取[完成证据](references/completion-evidence.md)。
+只询问阻止执行或验收的缺失信息。
+能从代码、状态或实验确认的事实，直接检查。
 
-## 运行模式
+## 匹配流程
 
-- 快速模式（推荐）：每张 ticket 只做必要测试，不做全量回归和验证。全部 ticket 合并后，由独立的 review 和验证上下文做一次全量 `code-review`、验证和完整测试。
-- 严格模式：每张 ticket 由独立的 review 和验证上下文做完整测试和验证。
-- 输入包含 `--fast` 时，选择快速模式。
-- 输入包含 `--strict` 时，选择严格模式。
-- 输入未提供模式时，默认选择快速模式。
-- 仅当功能很复杂且改动量很大时，选择严格模式。
-- 同时包含 `--fast` 和 `--strict` 时，停止并询问用户。
+先检查代码、影响范围和验证方式。
+用户指定流程时，优先采用指定流程。
+`--simple`、`--fast`、`--strict` 分别指定 3 个流程。
+指定多个冲突流程时，询问用户。
 
-## 角色与职责
+未指定流程时，按表格顺序匹配，命中后停止：
 
-### 集成 thread 或 session
+| 顺序 | 流程 | 匹配规则 |
+| --- | --- | --- |
+| 1 | [简单修复](playbooks/simple-fix.md) | 修复方向有依据、影响局部、聚焦验证足够。3 项必须同时满足 |
+| 2 | [严格模式](playbooks/strict.md) | 有具体依据证明：后续工作必须等待前序 ticket 的独立验证通过，聚焦检查和最终统一验收不足以替代 |
+| 3 | [快速模式](playbooks/fast.md) | 其余改动任务。证据不足时也采用快速模式 |
 
-**工作模式**
+文件数量和代码行数只作参考。新增功能不自动归入简单修复。
+自动选择严格模式时，写明前序产物、后续依赖和必需的独立验证项。
+说明为何后续工作必须等待验证通过。
+缺少这些依据时，采用快速模式。
+跨模块、协议改造、任务复杂或存在 ticket 依赖，均不能单独作为严格模式的依据。
 
-- 负责流程决策、调度和汇总，并完成简单协作工作。
-- 不执行复杂任务。需要修改实现、独立判断或长时间排查的工作必须委派。
-- 不为每项操作新建上下文。能在当前 thread 连续完成的简单操作，直接完成。
-- 不等待或轮询工作 sub-thread。独立 sub-thread 启动后结束当前 turn，收到回调再继续。
+## 按需读取与执行
 
-**职责**
+1. 完整读取选中的 playbook。
+2. 把 playbook 步骤列为待办。
+3. 报告流程和选择依据，不询问流程确认。
+4. 按待办执行，在对应步骤读取指定参考文件。
 
-- 确认 Git Flow 和运行模式。
-- 检查 Git 状态，完成简单的规范整理、普通合并、聚焦检查和清理。
-- 按依赖顺序委派复杂工作和独立 review，传递任务输入和返回要求。
-- 接收结果并输出报告。普通合并、归档和清理只由集成 thread 完成。
+入口不展开各流程的步骤，也不预读其他 playbook。
+工作区操作按需调用 `flora-git-flow`。
+委派默认优先独立 sub-thread，选择边界见[交付状态](references/multi-stage.md)。
+委派、恢复和归档按需调用 `codex-sub-thread`。
 
-**委派边界**
+本 skill 只决定调用时机、任务职责和验收要求。
+参考文件只定义公共机制或证据要求，不决定流程顺序。
+步骤受阻时，记录原因和未完成状态。
 
-- coding、独立 `code-review`、完整测试和验证、复杂冲突处理、故障排查和多文件修改必须委派。
-- 聚焦检查未通过时，不自行修复。交回 ticket 实现上下文，或委派新的修复上下文。
-- 可以在集成 worktree 中编辑简单的规范、ticket 和流程状态。
-- 不调用 `mcp__codex_app__wait_threads` 或 `wait_agent` 等待独立工作 sub-thread。
+只有影响范围或验证要求改变时，才重新匹配。
+指定流程也受适用边界约束。超出边界时，说明切换依据。
+切换时保留已有改动和证据，只补读新流程所需文件。
+用户禁止切换时，报告受阻并停止。
+普通测试失败先修复，不触发流程升级。
 
-### 工作 sub-thread（优先）或 subagent
-
-工作上下文承接复杂规划、ticket 实现、复杂冲突处理、修复和独立 review 任务。
-
-**工作模式**
-
-- 委派工作上下文时，先读取 `codex-sub-thread` skill，按该 skill 创建独立 sub-thread。
-- 优先使用 `mcp__codex_app__create_thread` 创建独立 sub-thread。
-- 创建前先获取父 thread ID：运行 `printf '%s\n' "$CODEX_THREAD_ID"`。变量为空时，停止创建并询问用户。
-- 把父 thread ID 和回调要求写入 sub-thread 的首条任务。要求它遇到问题、阻塞、失败或完成时回调父 thread。
-- 仅当用户明确要求 subagent，或 thread MCP 不可用、创建失败时，才使用 subagent。
-- thread MCP 不可用时，按 `codex-sub-thread` 的回退步骤使用 subagent，并报告降级原因。
-- 每个上下文负责一个完整交付物。同一交付物的连续操作不拆给多个上下文。
-
-**职责**
-
-- 完成分配的工作，运行对应检查，并报告结果。
-- 集成上下文创建 sub-thread 时，必须在首条任务中写入 `父 thread ID: <CODEX_THREAD_ID>`，并明确要求工作 sub-thread 遇到问题、阻塞、失败或完成时回调。
-- 独立 sub-thread 在遇到问题、阻塞、失败或完成后，用 `mcp__codex_app__send_message_to_thread` 回调父 thread，然后结束当前 turn。
-- 回调写明任务、分支、提交 SHA、合并状态、检查结果和遗留风险。失败或阻塞时，另写原因和下一步。
-- subagent 不发送回调，直接返回结果。
-- ticket 实现上下文不合并到集成分支。
-
-**回调规则**
-
-- 调用本 skill 即要求创建独立 sub-thread，并要求它在遇到问题、阻塞、失败或完成时回调父 thread。
-
-### review 和验证 sub-thread（优先）或 subagent
-
-**工作模式**
-
-- 必须新建独立上下文，不复用任何已有工作 sub-thread 或 subagent。
-- 创建方式、降级方式、回调和交接规则同工作 sub-thread 或 subagent，并遵循 `codex-sub-thread` skill。
-
-**职责**
-
-- 执行 `code-review`、测试和验证，返回结论、测试结果和遗留风险。
-- 不修改代码。严格模式下将缺陷交回原 ticket 实现上下文；原上下文不可用时，才新建修复上下文。
-
-## 流程
-
-1. **确认需求**（集成上下文）
-   - 调用 `grill-with-docs` 确认范围、约束和验收标准。
-2. **确定 Git Flow 和运行模式**（集成上下文）
-   - 按 `Git Flow` 章节创建或确认集成分支、目标分支和集成 worktree。
-   - 按 `运行模式` 章节确定运行模式。
-3. **生成规范和 ticket**（集成上下文；复杂任务委派规划工作上下文）
-   - 简单任务由集成上下文在集成 worktree 中调用 `to-spec` 和 `to-tickets`，跳过 `to-tickets` 的拆分确认。
-   - 需求复杂、拆分复杂或当前上下文不足时，优先委派一个规划工作 sub-thread。thread MCP 不可用或用户明确要求时，使用 subagent。
-   - 规划输入：需求、目标分支、运行模式、集成 worktree、父 thread ID 和回调要求。
-   - 规范：将运行模式和验收要求写入规范及每张 ticket。
-   - 提交：规范目录 `<integration-worktree>/.scratch/<feature-slug>/` 未被 Git 忽略时提交到集成分支。
-   - Tracker：本地规范返回绝对路径 `SPEC_DIR`；外部 tracker 返回 issue 标识或 URL。
-   - 返回：`SPEC_DIR`、ticket 列表和总时长估算。
-4. **输出执行前报告**（集成上下文）
-   在启动 ticket 实现前，只输出以下 3 项：
-   - 最终集成分支。
-   - 执行模式：快速模式或严格模式。
-   - 预估时间：从开始 ticket 到最终完成的总时长。无法可靠估算时写“待确认”。
-5. **实现 ticket**（每张 ticket 一个 ticket 实现 sub-thread，优先独立 sub-thread）
-   - 输入：ticket 引用、`SPEC_DIR`、目标分支、运行模式、ticket 分支 `<feature-slug>/<NN>-<slug>`、worktree `<repo>-worktrees/<feature-slug>/<NN>-<slug>`、父 thread ID 和回调要求。外部 tracker 传 issue 标识或 URL。
-   - 工作：从目标分支创建 ticket 分支和 worktree。
-   - 约束：当前分支不等于 ticket 分支时停止并报告。
-   - 工作：在 ticket worktree 中调用 `implement`，提交到 ticket 分支，将目标分支合并到 ticket 分支，运行必要检查。
-   - 约束：ticket 实现上下文不合并到集成分支。
-   - 返回：ticket 分支、worktree、提交 SHA、合并状态和检查结果。
-6. **严格模式 review 和验证**（每张 ticket 一个 review 和验证 sub-thread，优先独立 sub-thread）
-   - 条件：仅严格模式。
-   - 输入：ticket 引用、`SPEC_DIR`、ticket 分支、worktree、提交 SHA 和必要检查结果。
-   - 工作：运行 `code-review`、完整测试和验证。
-   - 约束：不修改代码。发现缺陷时，交回原 ticket 实现上下文；原上下文不可用时，委派新的修复上下文。修复后创建新的 review 和验证上下文。
-   - 返回：`code-review`、测试和验证结果。
-7. **合并、归档和清理 ticket**（集成上下文）
-   - 触发：快速模式收到 ticket 返回值；严格模式收到 review 和验证通过结果。
-   - 输入：ticket 分支、worktree、提交 SHA 和 ticket 实现 sub-thread ID。
-   - 工作：在集成 worktree 中确认当前分支是目标分支，运行 `git merge --no-ff <ticket-branch>`，生成合并提交，运行既定的目标分支聚焦检查。
-   - 收尾：检查通过后，标记 ticket 完成。
-   - 归档：调用 `mcp__codex_app__set_thread_archived` 归档 ticket 实现 sub-thread（如果存在）。
-   - 清理：删除 ticket worktree 和 ticket 分支。
-   - 约束：普通合并、归档和清理只在集成 thread 完成。
-   - 约束：冲突、检查失败或需要修改代码时，保留 ticket worktree 和分支，交回原 ticket 上下文或委派修复上下文。
-8. **快速模式最终 review 和验证**（review 和验证 sub-thread，优先独立 sub-thread）
-   - 条件：仅快速模式，且全部 ticket 已合并。
-   - 输入：目标分支、集成 worktree、`SPEC_DIR`、ticket 列表和合并提交。
-   - 工作：运行全量 `code-review`、验证和完整测试。
-   - 发现缺陷：委派修复工作上下文。修复后由集成上下文完成普通合并，再新建 review 和验证上下文。
-   - 严格模式：每张 ticket 已完成独立的 review 和验证，不调度最终 review 和验证。
-   - 返回：`code-review`、测试和验证结果。
-9. **汇总结果**（集成上下文）
-   - 输出目标分支、集成 worktree、规范位置或 tracker 标识、ticket 列表、合并提交，以及 review、测试和验证结果。
-   - 输出归档和清理结果。
-   - 保留集成分支和集成 worktree，不自动合并到 `main` 或 `master`。
-
-## 规则
-
-- 依赖未完成的 ticket 不启动。
-- 禁止直接向 `main` 或 `master` 提交 ticket。
-- 独立工作 sub-thread 必须回调父 thread；subagent 直接返回结果。归档和清理由集成 thread 完成。
-- 简单协作在集成上下文完成，复杂工作和独立 review 必须委派。
-- 用户只要求规划时，完成步骤 1 至 4 后停止。
-- skill 调用细节以各自说明为准。
+恢复已有 run 时，读取已记录流程的 playbook。
+多阶段 run 使用状态文件登记的流程快照。
+快照缺失时，按[交付状态](references/multi-stage.md)恢复。
+按 playbook 的恢复要求继续，不重复初始化。
+用户要求切换流程时，说明依据并更新流程记录。

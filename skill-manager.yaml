@@ -32,6 +32,8 @@ presets:
     - handoff
     - implement
     - improve-codebase-architecture
+    - ponytail-audit
+    - ponytail-review
     - prototype
     - research
     - setup-matt-pocock-skills
@@ -55,6 +57,13 @@ sources:
   - ref: danyuchn/asd-ste100-skill
     skills:
       - name: asd-ste100
+  - ref: https://github.com/DietrichGebert/ponytail.git
+    branch: main
+    skills:
+      - name: ponytail-audit
+        path: skills/ponytail-audit
+      - name: ponytail-review
+        path: skills/ponytail-review
   - ref: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
     branch: main
     skills:

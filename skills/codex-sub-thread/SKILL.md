@@ -1,16 +1,18 @@
 ---
 name: codex-sub-thread
-description: 创建独立 Codex sub-thread，选择同步等待或回调。创建工具不可用时回退到 subagent。也用于恢复、归档或迁移已有 thread。
+description: 创建独立 Codex sub-thread，选择同步等待或回调。创建工具不可用或拒绝创建时回退到 subagent。也用于恢复、归档或迁移已有 thread。
 ---
 
 # Codex Sub Thread
 
 1. 检查 `mcp__codex_app__create_thread` 是否可用。工具未加载时，用 `tool_search` 查找。
-   如果仍不可用，调用 `spawn_agent`，结束本流程。
+   如果工具可用，继续第 2 步。
+   如果工具不可用，说明原因，调用 `spawn_agent` 并结束本流程。
 2. 从环境变量 `CODEX_SESSION_ID` 读取父 thread ID。
 3. 选择跟踪方式。如果当前轮需要结果，使用同步等待。如果父 thread 可以先继续，使用回调。
    使用回调前，确认父 thread ID 和回调工具可用。
 4. 调用 `mcp__codex_app__create_thread` 创建 sub-thread。首条任务消息写明目标、工作目录和完成条件。
+   如果工具明确拒绝创建，按第 1 步回退。
    如果使用回调，在首条消息中加入以下指令。
 
    > 目标完成或需要父 thread 介入时，调用 `mcp__codex_app__send_message_to_thread`。
